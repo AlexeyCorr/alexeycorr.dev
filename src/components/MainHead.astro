@@ -1,0 +1,46 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string | undefined;
+	description?: string | undefined;
+}
+
+const {
+	title = 'AlexeyCorr',
+	description = 'The personal site of AlexeyCorr',
+} = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta name="description" property="og:description" content={description} />
+<meta name="viewport" content="width=device-width" />
+<meta name="generator" content={Astro.generator} />
+
+<link rel="preload" href="/assets/fonts/FiraSansRegular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/FiraSansSemiBold.woff2" as="font" type="font/woff2" crossorigin>
+
+<title>{title}</title>
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<script is:inline>
+	const getThemePreference = () => {
+		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+			return localStorage.getItem('theme');
+		}
+
+		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+	};
+
+	const isDark = getThemePreference() === 'dark';
+	document.documentElement.classList[isDark ? 'add' : 'remove']('theme-dark');
+
+	if (typeof localStorage !== 'undefined') {
+		const observer = new MutationObserver(() => {
+			const isDark = document.documentElement.classList.contains('theme-dark');
+			localStorage.setItem('theme', isDark ? 'dark' : 'light');
+		});
+		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+	}
+</script>
