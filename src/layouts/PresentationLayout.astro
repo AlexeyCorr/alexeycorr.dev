@@ -1,0 +1,69 @@
+---
+import '../../public/assets/shower/themes/ribbon/styles/styles.css';
+
+interface Props {
+	title?: string | undefined;
+	description?: string | undefined;
+}
+
+const { title, description } = Astro.props;
+---
+
+<html lang="ru">
+	<head>
+		<title>{title}</title>
+
+		<meta charset="UTF-8" />
+		<meta name="description" property="og:description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+		<meta name="generator" content={Astro.generator} />
+
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	</head>
+
+	<body class="shower list">
+		<header class="caption">
+			<h1>{title}</h1>
+			<p>{description}</p>
+		</header>
+
+		<slot />
+
+		<div class="progress"></div>
+
+		<script type="text/javascript" src="../../public/assets/shower/shower.js"></script>
+	</body>
+</html>
+
+<style is:global>
+	.shower {
+		--slide-ratio: calc(16 / 9);
+		--color-key: #4cafa6;
+		--color-fill: #333;
+
+		background-color: #141414;
+	}
+
+	.slide {
+		background-color: #141414;
+		color: #e3e3e3;
+	}
+
+	.slide h2 {
+		color: #e3e3e3;
+	}
+
+	.accent {
+		color: #ff5757;
+	}
+
+	.success {
+		color: #11af50;
+	}
+
+	.warning {
+		color: #ffaa00;
+	}
+</style>
+
+
