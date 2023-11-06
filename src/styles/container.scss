@@ -1,0 +1,16 @@
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+$xxl: 1600px;
+
+.container {
+  padding-inline: 20px;
+
+  @media (min-width: $md) {
+    padding-inline: 36px;
+  }
+
+  @media (min-width: $xxl) {
+    padding-inline: calc((100% - 1540px) / 2);
+  }
+}

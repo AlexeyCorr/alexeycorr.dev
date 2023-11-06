@@ -1,0 +1,11 @@
+:root {
+	--bg-main-color: oklch(100% 0 0);
+	--text-main-color: oklch(0% 0 0);
+	--accent-color: oklch(91% 0.161 99);
+}
+
+:root.theme-dark {
+	--bg-main-color: oklch(15% 0 0);
+	--text-main-color: oklch(91% 0 0);
+	--accent-color: oklch(76% 0.143 81);
+}

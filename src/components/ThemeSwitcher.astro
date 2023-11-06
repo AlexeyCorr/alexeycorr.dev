@@ -1,0 +1,40 @@
+<div class="theme-switcher">
+  <button
+    class="theme-switcher__button"
+    data-value="light"
+    type="button"
+  >
+    Light
+  </button>
+
+  <button
+    class="theme-switcher__button"
+    data-value="auto"
+    type="button"
+  >
+    Auto
+  </button>
+
+  <button
+    class="theme-switcher__button"
+    data-value="dark"
+    type="button"
+  >
+    Dark
+  </button>
+</div>
+
+<script>
+  const switcher = document.querySelector('.switcher');
+
+  switcher?.addEventListener('click', (evt) => {
+    const button = (evt.target as HTMLElement)?.closest('.switcher__button');
+
+    if (!button) {
+      return;
+    }
+
+    localStorage.setItem('theme', button.dataset.value);
+    console.log(button.dataset.value);
+  });
+</script>
