@@ -1,0 +1,1100 @@
+---
+import PresentationLayout from '../layouts/PresentationLayout.astro';
+---
+
+<PresentationLayout title="Big O Notation" description="@alexeycorr">
+  <section class="slide" id="cover">
+    <h2>Big O Notation</h2>
+    <p>Сложность и как её определить</p>
+    <img class="cover" src="../assets/shower/big-o/pictures/cover.png" alt="">
+    <style>
+      #cover h2 {
+        margin: 30px 0 0;
+        color: white;
+        text-align: center;
+        font-size: 70px;
+      }
+
+      #cover p {
+        margin: 10px 0 0;
+        text-align: center;
+        color: white;
+        font-style: italic;
+        font-size: 20px;
+      }
+
+      #cover p a {
+        color: white;
+      }
+
+      .cover {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.3);
+      }
+    </style>
+  </section>
+
+  <section class="slide">
+    <h2>Bachmann–Landau notation</h2>
+
+    <div class="columns two">
+      <div>
+        <img width="250" src="../assets/shower/big-o/pictures/Paul_Bachmann.jpeg" alt="Paul Bachmann">
+        <div>Paul Bachmann</div>
+      </div>
+
+      <div>
+        <img width="250" src="../assets/shower/big-o/pictures/Edmund_Landau.jpeg" alt="Edmund Landau">
+        <div>Edmund Landau</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>
+      Палиндром: Однострочник
+    </h2>
+
+    <div class="next">
+      <img height="100" src="../assets/shower/big-o/pictures/palidrome.png" alt="">
+
+      <br>
+      <a href="https://jsfiddle.net/Alexeycorr/9g3dzxtm/4/" target="_blank">
+        Пример
+      </a>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>
+      Однострочник: шаг 0
+    </h2>
+
+    <table class="table">
+      <tr>
+        <td>Л</td>
+        <td>О</td>
+        <td>Л</td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <style>
+      .table td {
+        width: calc(100% / 6);
+        border: 1px solid var(--color-line);
+        text-align: center;
+        padding: 0 !important;
+        background-color: #333;
+        line-height: 1;
+      }
+
+      .table td:not(:empty) {
+        background-color: #11af50;
+      }
+
+      .table td.active {
+        background-color: #4cafa6;
+      }
+
+      .table td.check {
+        background-color: #ffaa00;
+      }
+
+      .table tr {
+        height: 45px;
+      }
+    </style>
+  </section>
+
+  <section class="slide">
+    <h2>
+      Однострочник: шаг 1
+    </h2>
+
+    <table class="table">
+      <tr>
+        <td>Л</td>
+        <td>О</td>
+        <td>Л</td>
+
+        <td class="active"><span class="next">Л</span></td>
+        <td class="active"><span class="next">О</span></td>
+        <td class="active"><span class="next">Л</span></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <mark>.split()</mark>
+  </section>
+
+  <section class="slide">
+    <h2>
+      Однострочник: шаг 2
+    </h2>
+
+    <table class="table">
+      <tr>
+        <td>Л</td>
+        <td>О</td>
+        <td>Л</td>
+
+        <td class="active">Л</td>
+        <td class="active">О</td>
+        <td class="active">Л</td>
+      </tr>
+
+      <tr>
+        <td class="active">Л</td>
+        <td class="active">О</td>
+        <td class="active">Л</td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <mark>.split()</mark> -> <mark>.reverse()</mark>
+  </section>
+
+  <section class="slide">
+    <h2>
+      Однострочник: шаг 3
+    </h2>
+
+    <table class="table">
+      <tr>
+        <td>Л</td>
+        <td>О</td>
+        <td>Л</td>
+
+        <td class="active">Л</td>
+        <td class="active">О</td>
+        <td class="active">Л</td>
+      </tr>
+
+      <tr>
+        <td class="active">Л</td>
+        <td class="active">О</td>
+        <td class="active">Л</td>
+
+        <td>Л</td>
+        <td>О</td>
+        <td>Л</td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <mark>.split()</mark> -> <mark>.reverse()</mark> -> <mark>.join()</mark>
+  </section>
+
+  <section class="slide">
+    <h2>
+      Однострочник: шаг 4
+    </h2>
+
+    <table class="table">
+      <tr>
+        <td class="check">Л</td>
+        <td>О</td>
+        <td>Л</td>
+
+        <td class="active">Л</td>
+        <td class="active">О</td>
+        <td class="active">Л</td>
+      </tr>
+
+      <tr>
+        <td class="active">Л</td>
+        <td class="active">О</td>
+        <td class="active">Л</td>
+
+        <td class="check">Л</td>
+        <td>О</td>
+        <td>Л</td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <mark>.split()</mark> -> <mark>.reverse()</mark> -> <mark>.join()</mark> -> <mark>===</mark>
+  </section>
+
+  <section class="slide">
+    <h2>
+      Однострочник: шаг 4
+    </h2>
+
+    <table class="table">
+      <tr>
+        <td class="check">Л</td>
+        <td class="check">О</td>
+        <td>Л</td>
+
+        <td class="active">Л</td>
+        <td class="active">О</td>
+        <td class="active">Л</td>
+      </tr>
+
+      <tr>
+        <td class="active">Л</td>
+        <td class="active">О</td>
+        <td class="active">Л</td>
+
+        <td class="check">Л</td>
+        <td class="check">О</td>
+        <td>Л</td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <mark>.split()</mark> -> <mark>.reverse()</mark> -> <mark>.join()</mark> -> <mark>===</mark>
+  </section>
+
+  <section class="slide">
+    <h2>
+      Однострочник: шаг 4
+    </h2>
+
+    <table class="table">
+      <tr>
+        <td class="check">Л</td>
+        <td class="check">О</td>
+        <td class="check">Л</td>
+
+        <td class="active">Л</td>
+        <td class="active">О</td>
+        <td class="active">Л</td>
+      </tr>
+
+      <tr>
+        <td class="active">Л</td>
+        <td class="active">О</td>
+        <td class="active">Л</td>
+
+        <td class="check">Л</td>
+        <td class="check">О</td>
+        <td class="check">Л</td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <mark>.split()</mark> -> <mark>.reverse()</mark> -> <mark>.join()</mark> -> <mark>===</mark>
+  </section>
+
+  <section class="slide">
+    <h2>
+      Однострочник: выводы
+    </h2>
+
+    <mark>.split()</mark> -> <mark>.reverse()</mark> -> <mark>.join()</mark> -> <mark>===</mark>
+
+    <ul>
+      <li>по 3 итераций внутри .split(), .reverse() и .join()</li>
+      <li>3 итерации при сравнении</li>
+      <li>два дополнительных массива и одна дополнительная строка</li>
+    </ul>
+
+    <p><b>Итого:</b> 12 итераций и 9 дополнительных ячеек памяти.</p>
+  </section>
+
+  <section class="slide">
+    <h2>
+      Палиндром: С двумя указателями
+    </h2>
+
+    <img height="300" src="../assets/shower/big-o/pictures/palidrome2.png" alt="">
+
+    <br>
+    <a href="https://jsfiddle.net/Alexeycorr/pgaL7836/4/" target="_blank">
+      Пример
+    </a>
+  </section>
+
+  <section class="slide">
+    <h2>
+      С двумя указателями: шаг 0
+    </h2>
+
+    <table class="table">
+      <tr>
+        <td>Л</td>
+        <td>О</td>
+        <td>Л</td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <h2>
+      С двумя указателями: шаг 1
+    </h2>
+
+    <table class="table">
+      <tr>
+        <td>Л</td>
+        <td>О</td>
+        <td>Л</td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td class="active">0</td>
+        <td class="active"></td>
+        <td class="active"></td>
+        <td class="active"></td>
+
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td class="active">2</td>
+        <td class="active"></td>
+        <td class="active"></td>
+        <td class="active"></td>
+
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <mark>start = 0; end = N - 1;</mark>
+  </section>
+
+  <section class="slide">
+    <h2>
+      С двумя указателями: шаг 2
+    </h2>
+
+    <table class="table">
+      <tr>
+        <td>Л</td>
+        <td>О</td>
+        <td>Л</td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td class="active">0</td>
+        <td class="active"></td>
+        <td class="active"></td>
+        <td class="active"></td>
+
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td class="active">2</td>
+        <td class="active"></td>
+        <td class="active"></td>
+        <td class="active"></td>
+
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <mark>start = 0; end = N - 1;</mark> -> <mark>start < end</mark>
+  </section>
+
+  <section class="slide">
+    <h2>
+      С двумя указателями: шаг 3
+    </h2>
+
+    <table class="table">
+      <tr>
+        <td class="check">Л</td>
+        <td>О</td>
+        <td class="check">Л</td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td class="active">0</td>
+        <td class="active"></td>
+        <td class="active"></td>
+        <td class="active"></td>
+
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td class="active">2</td>
+        <td class="active"></td>
+        <td class="active"></td>
+        <td class="active"></td>
+
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <mark>start = 0; end = N - 1;</mark> -> <mark>start < end</mark> -> <mark>str[start] === str[end]</mark>
+  </section>
+
+  <section class="slide">
+    <h2>
+      С двумя указателями: выводы
+    </h2>
+
+    <mark>start = 0; end = N - 1;</mark> -> <mark>start < end</mark> -> <mark>str[start] === str[end]</mark>
+        <p><b>Итого:</b> 1 итерация и 2 числа дополнительной памяти.</p>
+  </section>
+
+  <section class="slide">
+    <h2>
+      Посчитаем сложность
+    </h2>
+
+    <div class="columns two">
+      <div>
+        <p><mark>Однострочник:</mark><br> 4N итераций, 3N символов</p>
+        <img height="60" src="../assets/shower/big-o/pictures/palidrome.png" alt="">
+      </div>
+
+      <div class="next">
+        <p><mark>С двумя указателями:</mark><br> N/2 итераций, 2 числа</p>
+        <img height="200" src="../assets/shower/big-o/pictures/palidrome2.png" alt="">
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>
+      Сложность алгоритма
+    </h2>
+
+    <p class="note" style="max-width: 70%;">
+      Зависимость объёма работы, которая выполняется алгоритмом,
+      от размера входных данных, выраженная математической функцией.
+    </p>
+  </section>
+
+  <style>
+    .examples {
+      position: relative;
+    }
+
+    .example {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      width: 350px;
+    }
+
+    .next.visited .example {
+      opacity: .3;
+    }
+  </style>
+
+  <section class="slide">
+    <h2>Варианты сложности</h2>
+
+    <ul class="examples">
+      <li>
+        O(1) - Константная
+        <img class="example" src="../assets/shower/big-o/pictures/example1.png" alt="">
+      </li>
+      <li class="next">
+        O(logN) - Логарифмическая
+        <img class="example" src="../assets/shower/big-o/pictures/example2.png" alt="">
+      </li>
+      <li class="next">
+        O(N) - Линейная
+        <img class="example" src="../assets/shower/big-o/pictures/example3.png" alt="">
+      </li>
+      <li class="next">
+        O(N*logN) - <a href="https://visualgo.net/en/sorting" target="_blank">Линейно-логарифмическая</a>
+        <img class="example" src="../assets/shower/big-o/pictures/example4.png" alt="">
+      </li>
+      </li>
+      <li class="next">
+        O(N^2) - <a href="https://visualgo.net/en/sorting" target="_blank">Квадратичная</a>
+        <img class="example" src="../assets/shower/big-o/pictures/example5.png" alt="">
+      </li>
+      <li class="next">
+        O(2^N) - Экспоненциальная
+        <img class="example" src="../assets/shower/big-o/pictures/example6.png" alt="">
+      </li>
+      <li class="next">
+        O(N!) - Факториальная
+        <img class="example" src="../assets/shower/big-o/pictures/example7.png" alt="">
+      </li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <img style="display: block; height: 100%; margin: 0 auto;" src="../assets/shower/big-o/pictures/big-o-graph.png" alt="">
+  </section>
+
+  <section class="slide">
+    <h2>Отбрасывание констант</h2>
+
+    <mark>O(2N)</mark> -> <mark class="next">O(N)</mark>
+
+    <br>
+    <br>
+    <img height="50%" src="../assets/shower/big-o/pictures/2n.png" alt="">
+  </section>
+
+  <section class="slide">
+    <h2>Отбрасывание констант</h2>
+
+    <mark>O(N * N^2)</mark> -> <mark class="next">O(N^2)</mark>
+
+    <br>
+    <br>
+    <img height="50%" src="../assets/shower/big-o/pictures/n*n^2.png" alt="">
+  </section>
+
+  <section class="slide">
+    <h2>Отбрасывание констант</h2>
+
+    <div class="columns two">
+      <div>
+        <p><mark>O(4N)</mark> -> <mark>O(N)</mark></p>
+        <img height="60" src="../assets/shower/big-o/pictures/palidrome.png" alt="">
+      </div>
+
+      <div>
+        <p><mark>O(N/2)</mark> -> <mark>O(N)</mark></p>
+        <img height="200" src="../assets/shower/big-o/pictures/palidrome2.png" alt="">
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Встроенные методы</h2>
+
+    <div class="columns two">
+      <ul>
+        <li>
+          arr[index] - <mark>O(1)</mark>
+        </li>
+
+        <li>
+          arr.push(item) - <mark>O(1)</mark>
+        </li>
+
+        <li>
+          arr.pop() - <mark>O(1)</mark>
+        </li>
+
+        <li>
+          arr.shift/unshift - <mark>O(N)</mark>
+        </li>
+
+        <li>
+          arr.sort() - <mark>O(N*logN)</mark>
+        </li>
+
+        <li>
+          arr.forEach/find/indexOf - <mark>O(N)</mark>
+        </li>
+
+        <li>
+          document.querySelector(selector) - <mark>O(N)</mark>
+        </li>
+      </ul>
+
+      <ul class="next">
+        <li>
+          map.set(key, value) - <mark>O(1)</mark>
+        </li>
+
+        <li>
+          map.delete(key) - <mark>O(1)</mark>
+        </li>
+
+        <li>
+          map.get/has(key) - <mark>O(1)</mark>
+        </li>
+
+        <li>
+          map.keys/values/entries - <mark>O(N)</mark>
+        </li>
+
+        <li>
+          set.add/delete/has(item) - <mark>O(1)</mark>
+        </li>
+
+        <li>
+          set.values/entries - <mark>O(N)</mark>
+        </li>
+
+        <li>
+          document.getElementById(id) - <mark>O(1)</mark>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Потренируемся</h2>
+
+    <div class="columns two">
+      <div>
+        <img width="100%" src="../assets/shower/big-o/pictures/test1.png" alt="">
+        <br>
+        <mark class="next">O(N*M)</mark>
+      </div>
+
+      <div class="next">
+        <img width="100%" src="../assets/shower/big-o/pictures/test2.png" alt="">
+        <br>
+        <mark class="next">O(N+M)</mark>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .test form {
+      display: grid;
+      grid-gap: 15px;
+      grid-template-columns: auto repeat(2, 1fr) max-content;
+    }
+
+    .test label,
+    .test .result {
+      grid-column: 1/-1;
+    }
+
+    .result {
+      display: grid;
+      grid-gap: 4px;
+      overflow-y: auto;
+    }
+
+    .test input {
+      all: unset;
+      width: 150px;
+      height: 56px;
+      padding: 10px 15px;
+      border: 1px solid var(--color-grey);
+      border-radius: 0.2em;
+      font: inherit;
+    }
+
+    .test button {
+      all: unset;
+      padding: 10px 30px;
+      background-color: var(--color-key);
+      font: inherit;
+      text-align: center;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 0.2em;
+    }
+
+    .test button:hover {
+      background-color: #307d76;
+    }
+
+    .test button:focus-visible {
+      background-color: #307d76;
+    }
+  </style>
+
+  <section class="slide test">
+    <h2>
+      Палиндром, тест скорости
+    </h2>
+
+    <form id="test-palidrome">
+      <label for="palidrome">
+        Введите количество данных и выберете тип алгоритма
+      </label>
+
+      <input id="palidrome" name="len" type="text" placeholder="Количество" pattern="^\d{1,}$" required>
+      <button data-type="simple" type="submit">Однострочник</button>
+      <button data-type="difficult" type="submit">Два указателя</button>
+      <button data-type="reset" type="submit">Сброс</button>
+
+      <div class="result"></div>
+    </form>
+
+    <script>
+      function getPalidromeStr(len) {
+        let str = '';
+
+        for (let i = 0; i <= len; i++) {
+          str += 'O'
+        }
+
+        return str;
+      }
+
+      function isPalidrome1(str) {
+        return str === str.split('').reverse().join('');
+      }
+
+      function isPalidrome2(str) {
+        let start = 0;
+        let end = str.length - 1;
+
+        while (start < end) {
+          if (str[start] !== str[end]) {
+            return false;
+          }
+
+          start++;
+          end--;
+        }
+
+        return true
+      }
+
+      function showResult(parent, data) {
+        const node = document.createElement('mark');
+        node.textContent = data;
+        parent.querySelector('.result').prepend(node);
+      }
+
+      function getTime(fn) {
+        let t0;
+        let t1;
+
+        t0 = performance.now();
+        fn();
+        t1 = performance.now();
+
+        return t1 - t0;
+      }
+
+      let time = 0;
+      const formPalidrome = document.querySelector('#test-palidrome');
+
+      formPalidrome.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+
+        const type = evt.submitter.dataset.type;
+
+        if (type === 'reset') {
+          evt.target.querySelector('.result').innerHTML = '';
+          return;
+        }
+
+        const len = +evt.target.len.value;
+        const str = getPalidromeStr(len);
+
+        if (type === 'simple') {
+          time = getTime(() => isPalidrome1(str));
+        } else if (type === 'difficult') {
+          time = getTime(() => isPalidrome2(str));
+        }
+
+        console.log(`${type}: ${time}`);
+        showResult(evt.target, `Length: ${len.toLocaleString()}; ${type}: ${time} ms`);
+      });
+    </script>
+  </section>
+
+  <section class="slide test">
+    <h2>
+      Сортировка, тест скорости
+    </h2>
+
+    <form id="test-sort" style="grid-template-columns: auto repeat(3, 1fr) max-content;">
+      <label for="sort">
+        Введите количество данных и выберете тип алгоритма
+      </label>
+
+      <input id="sort" name="len" type="text" placeholder="Количество" pattern="^\d{1,}$" required>
+      <button data-type="sort" type="submit">Sort</button>
+      <button data-type="merge" type="submit">Merge</button>
+      <button data-type="bubble" type="submit">Bubble</button>
+      <button data-type="reset" type="submit">Сброс</button>
+
+      <div class="result"></div>
+    </form>
+
+    <script>
+      function merge(left, right) {
+        let sortedArr = [];
+        while (left.length && right.length) {
+          if (left[0] < right[0]) {
+            sortedArr.push(left.shift());
+          } else {
+            sortedArr.push(right.shift());
+          }
+        }
+
+        return [...sortedArr, ...left, ...right]
+      }
+
+      function mergeSort(arr) {
+        if (arr.length <= 1) return arr
+
+        let mid = Math.floor(arr.length / 2);
+        let left = mergeSort(arr.slice(0, mid));
+        let right = mergeSort(arr.slice(mid));
+
+        return merge(left, right);
+      }
+
+      function bubbleSort(arr) {
+        let swapped = false;
+        const a = [...arr];
+
+        for (let i = 1; i < a.length; i++) {
+          swapped = false;
+
+          for (let j = 0; j < a.length - i; j++) {
+            if (a[j + 1] < a[j]) {
+              [a[j], a[j + 1]] = [a[j + 1], a[j]];
+
+              swapped = true;
+            }
+          }
+
+          if (!swapped) return a;
+        }
+
+        return a;
+      };
+
+      function getUnsortArr(len) {
+        const arr = [];
+
+        for (let i = len; i > 0; i--) {
+          arr.push(i)
+        }
+
+        return arr;
+      }
+
+      const formSort = document.querySelector('#test-sort');
+
+      formSort.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+
+        const type = evt.submitter.dataset.type;
+
+        if (type === 'reset') {
+          evt.target.querySelector('.result').innerHTML = '';
+          return;
+        }
+
+        const len = +evt.target.len.value;
+        const arr = getUnsortArr(len);
+
+        if (type === 'sort') {
+          time = getTime(() => arr.sort((a, b) => a - b));
+        } else if (type === 'bubble') {
+          time = getTime(() => bubbleSort(arr));
+        } else if (type === 'merge') {
+          time = getTime(() => mergeSort(arr));
+        }
+
+        console.log(`${type}: ${time}`);
+        showResult(evt.target, `Length: ${len.toLocaleString()}; ${type}: ${time} ms`);
+      });
+    </script>
+  </section>
+
+  <section class="slide">
+    <h2>Память тоже важна</h2>
+
+    В любой непонятной ситуации копируй данные!
+
+    <br>
+    <mark class="next">const copyData = [...data];</mark> <span class="next"> -> <mark>O(N)</mark></span>
+  </section>
+
+  <section class="slide">
+    <h2>Сomplexity 100%</h2>
+
+    <div style="position: relative;">
+      <video style="height: 350px;" src="../assets/shower/big-o/pictures/frontvsback.mp4" autoplay muted loop></video>
+      <a class="copyright bottom white" href="https://www.tiktok.com/@fireuppro">@fireuppro</a>
+    </div>
+  </section>
+
+  <section style="display: grid; grid-gap: 30px; grid-template-columns: repeat(2, 1fr); align-items: center;"
+    class="slide">
+    <h2>Спасибо за&nbsp;внимание!</h2>
+    <video style="height: 350px;" src="../assets/shower/big-o/pictures/cat.mp4" autoplay muted loop></video>
+  </section>
+
+  <style>
+    .social {
+      display: grid;
+      grid-gap: 10px 20px;
+      grid-template-columns: repeat(4, max-content);
+      align-items: center;
+      width: 100%;
+    }
+
+    .social h3 {
+      margin: 0;
+      grid-column: 1/-1;
+    }
+
+    .social span {
+      grid-column: 1/-1;
+    }
+
+    .social a {
+      display: flex;
+      flex-direction: column;
+      background: none;
+      color: #fff;
+    }
+  </style>
+
+  <section class="slide">
+    <h2>Подписывайтесь, ставьте лайки!</h2>
+
+    <div class="social">
+      <a href="https://www.linkedin.com/in/alexey-koryakin-a3b884192/" target="_blank">
+        <img src="../assets/shower/big-o/pictures/linkedin.webp" width="148" height="148">
+        Linkedin
+      </a>
+
+      <a href="https://github.com/AlexeyCorr" target="_blank">
+        <img src="../assets/shower/big-o/pictures/github.webp" width="148" height="148">
+        GitHub
+      </a>
+
+      <a href="https://www.instagram.com/alexeycorr/" target="_blank">
+        <img src="../assets/shower/big-o/pictures/instagram.webp" width="148" height="148">
+        Instagram
+      </a>
+
+      <a href="tg://resolve?domain=alexeycorr" target="_blank">
+        <img src="../assets/shower/big-o/pictures/telegram.webp" width="148" height="148">
+        Telegram
+      </a>
+
+      <span>@alexeycorr</span>
+    </div>
+  </section>
+</PresentationLayout>
