@@ -1,6 +1,4 @@
 ---
-import '../../public/assets/shower/themes/ribbon/styles/styles.css';
-
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
@@ -17,6 +15,8 @@ const { title, description } = Astro.props;
 		<meta name="description" property="og:description" content={description} />
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 		<meta name="generator" content={Astro.generator} />
+
+		<link rel="stylesheet" href="../../assets/shower/themes/ribbon/styles/styles.css">
 
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	</head>
