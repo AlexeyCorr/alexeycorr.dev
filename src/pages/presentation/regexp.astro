@@ -1,0 +1,486 @@
+---
+import PresentationLayout from '../../layouts/PresentationLayout.astro';
+---
+
+<style>
+  #cover h2 {
+    margin: 30px 0 0;
+    color: white;
+    text-align: center;
+    font-size: 70px;
+  }
+
+  #cover p {
+    margin: 10px 0 0;
+    text-align: center;
+    color: white;
+    font-style: italic;
+    font-size: 20px;
+  }
+
+  #cover p a {
+    color: white;
+  }
+
+  .cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5);
+  }
+
+  .video {
+    display: block;
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+  }
+
+  .test form {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: min-content 1fr auto min-content auto;
+  }
+
+  .test label {
+    grid-column: 1/-1;
+  }
+
+  .test input {
+    all: unset;
+    height: 56px;
+    padding: 10px 15px;
+    border: 1px solid var(--color-grey);
+    border-radius: 0.2em;
+    font: inherit;
+  }
+
+  .test button {
+    all: unset;
+    padding: 10px 30px;
+    background-color: var(--color-key);
+    font: inherit;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0.2em;
+  }
+
+  .test button:hover {
+    background-color: #307d76;
+  }
+  .test button:focus-visible {
+    background-color: #307d76;
+  }
+
+  .test code {
+    display: flex;
+    align-items: center;
+  }
+
+  .test mark {
+    grid-column: 1/-1;
+  }
+
+  .social {
+    display: grid;
+    grid-gap: 10px 20px;
+    grid-template-columns: repeat(4, max-content);
+    align-items: center;
+    width: 100%;
+  }
+
+  .social h3 {
+    margin: 0;
+    grid-column: 1/-1;
+  }
+
+  .social span {
+    grid-column: 1/-1;
+  }
+
+  .social a {
+    display: flex;
+    flex-direction: column;
+    background: none;
+    color: #fff;
+  }
+</style>
+
+<PresentationLayout title="Регулярные выражения" description="@alexeycorr">
+  <section class="slide" id="cover">
+    <h2>Регулярные выражения</h2>
+    <p>регэксп, регулярка, рег</p>
+    <img class="cover" src="../../assets/shower/regexp/pictures/cover.jpg" alt="">
+  </section>
+
+  <section class="slide">
+    <h2>1951</h2>
+
+    <div class="columns two">
+      <h3 style="font-size: 2em; line-height: 1;">Стивен Коул Клини</h3>
+      <img src="../../assets/shower/regexp/pictures/kleene.jpeg" alt="Клини, Стивен Коул">
+    </div>
+  </section>
+
+  <section class="slide">
+    <img style="display: block; height: 100%; margin: 0 auto;" src="../../assets/shower/regexp/pictures/perl.png" alt="perl in work">
+  </section>
+
+  <section class="slide">
+    <h2 style="margin: 0">What is it?</h2>
+    <code style="font-size: 23px;" set:html={'/^(?:[A-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[A-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z-яА-ЯёЁ0-9](?:[a-z-яА-ЯёЁ0-9-]*[a-z-яА-ЯёЁ0-9])?\.)+[a-z-яА-ЯёЁ0-9]{2,}(?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/i'}>
+    </code>
+  </section>
+
+  <section class="slide">
+    <h2>Я вышел в интернет с таким вопросом</h2>
+    <video class="video" autoplay loop muted>
+      <source src="../../assets/shower/regexp/pictures/regexp.webm" type="video/webm" />
+    </video>
+  </section>
+
+  <section class="slide">
+    <h2>Синтаксис</h2>
+    <ul>
+      <li>
+        Длинный<br />
+        <code>const regexp = new RegExp('pattern', 'flags');</code>
+      </li>
+      <li>
+        Короткий<br />
+        <code>const regexp = /pattern/flags;</code>
+      </li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Флаги</h2>
+    <ul>
+      <li>
+        i - поиск не зависит от регистра (А и а)
+      </li>
+      <li>
+        g - ищет все совпадения (не только первое)
+      </li>
+      <li>
+        m - многострочный режим
+      </li>
+      <li>
+        s - включает режим «dotall»
+      </li>
+      <li>
+        u - включает полную поддержку юникода.
+      </li>
+      <li>
+        y - режим поиска на конкретной позиции в тексте
+      </li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Из чего состоят</h2>
+    <ol class="columns two">
+      <li>
+        Символы
+
+        <ul>
+          <li class="next">
+            обычные
+          </li>
+          <li class="next">
+            специальные (метасимволы)
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        Операции
+
+        <ul>
+          <li class="next">
+            перечисление
+          </li>
+          <li class="next">
+            квантификация
+          </li>
+          <li class="next">
+            группировка
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+
+
+  <section class="slide">
+    <h2>Символьные классы</h2>
+    <div class="columns two">
+      <pre>
+        <code>\d || [0-9]</code>
+        <code>\s || [\t\r\n\f\v]</code>
+        <code>\w || [A-Za-z0-9_]</code>
+      </pre>
+
+      <pre class="next">
+        <code>\D || [^0-9]</code>
+        <code>\S || [^\t\r\n\f\v]</code>
+        <code>\W || [^A-Za-z0-9_]</code>
+      </pre>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Юникод</h2>
+
+    <pre>
+      <code>'a'.length // 1 или 2 байта</code>
+      <code>'🖖'.length // 2 или 4 байта</code>
+    </pre>
+
+    <p class="next" style="margin: .3em">
+      <code>Флаг u</code> - включает специальный режим для работы с юникодом<br />
+      <mark set:html="\p{...}"></mark> - специальный класс который работает в режиме unicode
+    </p>
+
+    <div class="next">
+      <b>Основные категории:</b>
+      <ul class="columns three">
+        <li>
+          Буквы L
+        </li>
+        <li>
+          Числа N
+        </li>
+        <li>
+          Знаки пунктуации P
+        </li>
+        <li>
+          Отметки M
+        </li>
+        <li>
+          Символы S
+        </li>
+        <li>
+          Разделители Z
+        </li>
+        <li>
+          Прочие C
+        </li>
+        <li>
+          Hex_Digit
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Метасимволы</h2>
+
+    <pre>
+      <code>/<i class="accent">.</i>/.test('spongebob'); // <i class="success">true</i></code>
+      <code class="next">/<i class="accent">.</i>/.test('\r\n'); // <i class="warning">false</i></code>
+      <code class="next">/<i class="accent">.</i>/<i class="accent">s</i>.test('\r\n'); // <i class="success">true</i></code>
+      <code class="next">/<i class="accent">^</i>star wars<i class="accent">$</i>/.test('star wars'); // <i class="success">true</i></code>
+      <code class="next">/<i class="accent">^</i>star wars<i class="accent">$</i>/.test('star wars<i class="accent">\n</i>forever'); // <i class="warning">false</i></code>
+      <code class="next">/<i class="accent">^</i>star wars<i class="accent">$</i>/<i class="accent">m</i>.test('star wars<i class="accent">\n</i>forever'); // <i class="success">true</i></code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Метасимволы</h2>
+
+    <pre>
+      <code>/<i class="accent">\b</i>Skillbox<i class="accent">\b</i>/.test('Skillbox or GeekBrains'); // <i class="success">true</i></code>
+      <code class="next">/<i class="accent">\b</i>Skillbox<i class="accent">\b</i>/.test('GeekSkillbox'); // <i class="warning">false</i></code>
+      <code class="next">/<i class="accent">\b</i>Skill<i class="accent">\b</i>/.test('Skillбокс'); // <i class="success">true</i></code>
+      <code class="next">'150.000'.replace(/./g, ' '); // '       '</code>
+      <code class="next">'150.000'.replace(/\./g, ' '); // '150 000'</code>
+      <code class="next">[ \ ^ $ . | ? * + ( )</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Перечисление</h2>
+
+    <pre>
+      <code>/<i class="accent">[</i>qwerty<i class="accent">]</i>/.test('rty'); // <i class="success">true</i></code>
+      <code class="next"><i class="accent">[</i>A-G\d<i class="accent">]</i></code>
+      <code class="next">/<i class="accent">[</i>а-я<i class="accent">]</i>/.test('ё'); // <i class="warning">false</i></code>
+      <code class="next">/<i class="accent">[</i>.<i class="accent">]</i>/.test('найдется всё!'); // <i class="warning">false</i></code>
+      <code class="next">/<i class="accent">[</i><i class="accent">^</i>ничего<i class="accent">]</i>/.test('всё'); // <i class="success">true</i></code>
+      <code class="next">/<i class="accent">[</i>ничего<i class="accent">^</i><i class="accent">]</i>/.test('^');</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Квантификаторы</h2>
+
+    <pre>
+      <code>/Skil<i class="accent">*</i>/.test('Ski'); // <i class="success">true</i></code>
+      <code class="next">/Skil<i class="accent">+</i>/.test('Skilllll'); // <i class="success">true</i></code>
+      <code class="next">/colou<i class="accent">?</i>r/.test('color'); // <i class="success">true</i></code>
+      <code class="next">/colou<i class="accent">?</i>r/.test('colour'); // <i class="success">true</i></code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Квантификаторы</h2>
+
+    <pre>
+      <code>/kek<i class="accent" set:html={'{7}'}></i>/.test('kekkkkkkk'); // <i class="success">true</i></code>
+      <code class="next">/kek<i class="accent" set:html={'{1,7}'}></i>/.test('kek'); // <i class="success">true</i></code>
+      <code class="next">/kek<i class="accent" set:html={'{3,}'}></i>/.test('kekkkkkk'); // <i class="success">true</i></code>
+      <code class="next">/lo<i class="accent" set:html={'{,5}'}></i>l/.test('loooool');</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Квантификаторы: жадные и ленивые</h2>
+
+    <pre>
+      <code>('oooo').match(/o+/); // oooo</code>
+      <code class="next">('хочу "найти" все "слова" в "кавычках"').match(/".+"/g);</code>
+      <code class="next">'"найти" все "слова" в "кавычках"'</code>
+      <code class="next">('хочу "найти" все "слова" в "кавычках"').match(/".+<i class="accent">?</i>"/g);</code>
+      <code class="next">'"найти" "слова" "кавычках"'</code>
+      <code class="next">('oooo').match(/o+<i class="accent">?</i>/);</code>
+      <code class="next">'o'</code>
+      <code class="next">('oooo').match(/o*<i class="accent">?</i>/);</code>
+      <code class="next">''</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Группировка</h2>
+
+    <pre>
+      <code>/<i class="accent">(</i>\+7|8<i class="accent">)</i><i class="accent">(</i>\d{3}<i class="accent">)</i>\d{7}/.exec('88002000600');</code>
+      <code class="next">['88002000600', '8', '800'];</code>
+      <code class="next">/(<i class="accent">?&lt;region&gt;</i>\+7|8)(<i class="accent">?&lt;code&gt;</i>\d{3})\d{7}/.exec('88002000600');</code>
+      <code class="next">groups.region // 8; groups.code // 800</code>
+      <code class="next">/(<i class="accent">?:</i>\+7|8)(<i class="accent">?:</i>\d{3})\d{7}/.exec('88002000600');</code>
+      <code class="next">['88002000600'];</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Обратные ссылки</h2>
+
+    <pre>
+      <code>"Just don't it".match(/['"](.+?)['"]/g) // "Just don'</code>
+      <code class="next">"Just don't it".match(/<i class="accent">(['"])</i>(.+?)<i class="accent">\1</i>/g); // "Just don't it"</code>
+      <code class="next">"Just don't it".match(/<i class="accent">(?&lt;quote&gt;['"])</i>(.+?)<i class="accent">\k&lt;quote&gt;</i>/g);</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Методы RegExp</h2>
+
+    <pre>
+      <code>regexp.<i class="accent">exec</i>(str); // null || ['все совпадение', $1, $2]</code>
+      <code>regexp.<i class="accent">test</i>(str); // Boolean</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Методы String</h2>
+
+    <pre>
+      <code>str.<i class="accent">match</i>(regexp); // null || ['все совпадение', $1, $2]</code>
+      <code>str.<i class="accent">replace</i>(regexp, replacement);</code>
+      <code>str.<i class="accent">search</i>(regexp); // -1 || позиция совпадения</code>
+      <code>str.<i class="accent">split</i>(regexp);</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Метод replace</h2>
+
+    <pre>
+      <code>str.<i class="accent">replace</i>(regexp, replacement);</code>
+    </pre>
+    <strong>В строке замены можно использовать спецсимволы:</strong>
+    <ul>
+      <li><i class="accent">$&</i> - подстрока, совпадение с regexp</li>
+      <li><i class="accent">$\`</i> - подстрока до $&</li>
+      <li><i class="accent">$'</i> - подстрока после $&</li>
+      <li><i class="accent">$1, $2, ..., $&lt;name&gt;</i> - совпадение со скобочной группой</li>
+    </ul>
+  </section>
+
+  <section class="slide test">
+    <h2>Практика</h2>
+
+    <form>
+      <label for="reg">
+        Напишите регэксп, чтобы найти языки состоящие из 4х символов
+        <code data-str="CSS, Python, Java, HTML, JavaScript, С#">const str = 'CSS, Python, Java, HTML, JavaScript, С#'</code>
+      </label>
+
+      <code>srt.match(</code>
+      <input placeholder="regexp" id="reg" type="text" />
+      <input style="width: 56px;" id="flags" placeholder="flags" type="text" />
+      <code>)</code>
+      <button type="submit">Вжух!</button>
+      <mark style="display: none;"></mark>
+    </form>
+  </section>
+
+  <section class="slide test">
+    <h2>Практика</h2>
+
+    <form>
+      <label for="reg">
+        Напишите регэксп, чтобы найти время стречи
+        <code data-str="Встречаемся в 19:00">const str = 'Встречаемся в 19:00'</code>
+      </label>
+
+      <code>srt.match(</code>
+      <input placeholder="regexp" id="reg" type="text" />
+      <input style="width: 56px;" id="flags" placeholder="flags" type="text" />
+      <code>)</code>
+      <button type="submit">Вжух!</button>
+      <mark style="display: none;"></mark>
+    </form>
+  </section>
+
+  <section class="slide">
+    <h2>Ну вот и всё!</h2>
+
+    <div class="social">
+      <h3>Подписывайтесь, ставьте лайки!</h3>
+
+      <a href="https://github.com/AlexeyCorr" target="_blank">
+        <img
+          src="../../assets/shower/regexp/pictures/github.webp"
+          width="148"
+          height="148"
+        />
+
+        GitHub
+      </a>
+
+      <a href="https://www.instagram.com/alexeycorr/" target="_blank">
+        <img
+          src="../../assets/shower/regexp/pictures/instagram.webp"
+          width="148"
+          height="148"
+        />
+
+        Instagram
+      </a>
+
+      <a href="tg://resolve?domain=alexeycorr" target="_blank">
+        <img
+          src="../../assets/shower/regexp/pictures/telegram.webp"
+          width="148"
+          height="148"
+        />
+
+        Telegram
+      </a>
+
+      <span>@alexeycorr</span>
+    </div>
+  </section>
+</PresentationLayout>
