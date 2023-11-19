@@ -1,0 +1,98 @@
+<section class="about-block">
+  <strong class="about-block__accent">
+    안녕
+  </strong>
+
+  <h1 class="about-block__title">
+    Я Алексей Корякин фронтенд разработчик
+  </h1>
+
+  <picture class="about-block__picture">
+    <source
+      srcset="../assets/img/about/hi@1x.webp 1x, ../assets/img/about/hi@2x.webp 2x"
+      type="image/webp"
+    >
+    <img
+      src="../assets/img/about/hi@1x.jpg"
+      srcset="../assets/img/about/hi@2x.jpg 2x"
+      width="535"
+      height="570"
+      loading="eager"
+      decoding="sync"
+      alt="Алексей в костюме зайца"
+    >
+  </picture>
+
+  <p class="about-block__description">
+    Hi!
+    I`m a front-end developer working with HTML, CSS and JavaScript web technologies, as well as with the Vue.js framework and I know a little react.js. In my free time I learn new technologies and write on Node.js.
+    As a mentor at html academy I`m helping students get into IT.
+  </p>
+</section>
+
+<style lang="scss">
+  .about-block__accent {
+    color: var(--accent-color);
+    font-family: 'Neue Machina';
+    font-size: 96px;
+    font-weight: 800;
+    line-height: 1;
+
+    &::after {
+      content: '|';
+      animation: blink 1s infinite;
+    }
+  }
+
+  .about-block__title {
+    font-family: 'Neue Machina';
+    font-weight: 800;
+  }
+
+  @keyframes blink {
+    0%, 100% {opacity: 1;}
+    50% {opacity: 0;}
+  }
+</style>
+
+<script is:inline>
+  const element = document.querySelector('.about-block__accent')
+  const greetings = ['안녕', 'こんにちは', 'Hello', 'Привет', 'Hola', '你好', 'Sain uu', 'Xin chào', 'გამარჯობა', 'Привит', 'Shalom', 'Aloha', 'Salom']
+
+  const typing = () => {
+    let textIndex = 0
+    let interval = null
+    let index = 0
+
+    const type = str => {
+      interval = setInterval(() => {
+        if (index > str.length) {
+          clearInterval(interval)
+          backspace(str)
+        } else {
+          element.textContent = str.slice(0, index)
+          index++
+        }
+      }, 200)
+    }
+
+    const backspace = str => {
+      interval = setInterval(() => {
+        if (index < 0) {
+          clearInterval(interval)
+          textIndex = textIndex === (greetings.length - 1) ? 0 : ++textIndex
+          index = 0
+          console.log(textIndex);
+          type(greetings[textIndex])
+        } else {
+          element.textContent = str.slice(0, index)
+          index--
+        }
+      }, 200)
+    }
+
+    type(greetings[textIndex])
+  }
+
+  typing()
+</script>
