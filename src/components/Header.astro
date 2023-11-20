@@ -1,5 +1,11 @@
-<header class="header">
-  <a href="/">
+---
+import { getEntry } from 'astro:content';
+
+const { data } = await getEntry('menu', 'menu');
+---
+
+<header class="header container">
+  <a class="header__logo" href="/">
     <img
       width="20"
       height="20"
@@ -7,11 +13,43 @@
       alt=""
     >
   </a>
+
+  <nav class="header__nav">
+    <ul class="header__list">
+      {data.nav.map((item: any) => (
+        <li class="header__item">
+          <a class="header__link" href={item.link}>
+            {item.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
 </header>
 
-<style>
+<style lang="scss">
   .header {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: 20px auto auto;
+    align-items: center;
     padding-top: 20px;
     padding-bottom: 20px;
+  }
+
+  .header__logo {
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+
+  .header__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
   }
 </style>

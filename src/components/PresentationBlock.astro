@@ -1,0 +1,106 @@
+---
+import { getEntry } from 'astro:content';
+
+const { data } = await getEntry('presentation', 'presentation');
+---
+
+<section class="presentation-block">
+  <div class="presentation-block__wrapper container">
+    <h2 class="presentation-block__title">
+      <a href="/presentation">
+        {data.title}
+      </a>
+    </h2>
+
+    <ul class="presentation-block__list">
+      {data.presentations.map((presentation: any) => (
+        <li class="presentation-block__item">
+          <h3 class="presentation-block__subtitle">
+            {presentation.title}
+          </h3>
+
+          <sub class="presentation-block__sub">
+            {presentation.time}
+          </sub>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style lang="scss">
+  .presentation-block {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: var(--accent-color);
+    color: var(--text-accent-color);
+
+    @media (min-width: 1024px) {
+      padding-top: 120px;
+      padding-bottom: 120px;
+    }
+  }
+
+  .presentation-block__title {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 500;
+
+    @media (min-width: 1024px) {
+      font-size: 18px;
+      margin-bottom: 32px;
+    }
+  }
+
+  .presentation-block__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    @media (min-width: 1024px) {
+      gap: 32px;
+    }
+  }
+
+  .presentation-block__item {
+    display: flex;
+    gap: 8px;
+
+    @media (min-width: 1024px) {
+      gap: 32px;
+    }
+
+    &:not(:last-child)::after {
+      width: 24px;
+      height: 2px;
+      align-self: center;
+      background-color: var(--text-accent-color);
+      content: '';
+
+      @media (min-width: 1024px) {
+        width: 48px;
+        height: 4px;
+      }
+    }
+  }
+
+  .presentation-block__subtitle {
+    margin: 0;
+    font-family: 'Neue Machina';
+    font-weight: 800;
+    font-size: clamp(16px, 4vw, 48px);
+  }
+
+  .presentation-block__sub {
+    font-size: 8px;
+
+    @media (min-width: 1024px) {
+      font-size: 18px;
+    }
+  }
+</style>

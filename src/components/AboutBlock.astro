@@ -1,10 +1,14 @@
-<section class="about-block">
-  <strong class="about-block__accent">
-    안녕
-  </strong>
+---
+import { getEntry } from 'astro:content';
+
+const { data } = await getEntry('about', 'about');
+---
+
+<section class="about-block container">
+  <strong class="about-block__accent"></strong>
 
   <h1 class="about-block__title">
-    Я Алексей Корякин фронтенд разработчик
+    {data.title}
   </h1>
 
   <picture class="about-block__picture">
@@ -23,72 +27,61 @@
     >
   </picture>
 
-  <p class="about-block__description">
-    Hi!
-    I`m a front-end developer working with HTML, CSS and JavaScript web technologies, as well as with the Vue.js framework and I know a little react.js. In my free time I learn new technologies and write on Node.js.
-    As a mentor at html academy I`m helping students get into IT.
-  </p>
+  <div class="about-block__content">
+    {data.descriptions.map((description: string) => (
+      <p class="about-block__description">{description}</p>
+    ))}
+  </div>
 </section>
 
-<style lang="scss">
-  .about-block__accent {
-    color: var(--accent-color);
-    font-family: 'Neue Machina';
-    font-size: 96px;
-    font-weight: 800;
-    line-height: 1;
-
-    &::after {
-      content: '|';
-      animation: blink 1s infinite;
-    }
-  }
-
-  .about-block__title {
-    font-family: 'Neue Machina';
-    font-weight: 800;
-  }
-
-  @keyframes blink {
-    0%, 100% {opacity: 1;}
-    50% {opacity: 0;}
-  }
-</style>
-
-<script is:inline>
+<script>
+  const TYPING_SPEED = 250
+  const TYPING_DELAY = 5000
   const element = document.querySelector('.about-block__accent')
   const greetings = ['안녕', 'こんにちは', 'Hello', 'Привет', 'Hola', '你好', 'Sain uu', 'Xin chào', 'გამარჯობა', 'Привит', 'Shalom', 'Aloha', 'Salom']
 
   const typing = () => {
     let textIndex = 0
-    let interval = null
     let index = 0
+    let interval: ReturnType<typeof setInterval>
+    let timeout: ReturnType<typeof setTimeout>
 
-    const type = str => {
+    const type = (str: string) => {
       interval = setInterval(() => {
         if (index > str.length) {
           clearInterval(interval)
-          backspace(str)
+          element?.classList.add('about-block__accent--animate')
+
+          timeout = setTimeout(() => {
+            backspace(str)
+          }, TYPING_DELAY)
         } else {
-          element.textContent = str.slice(0, index)
+          clearTimeout(timeout)
+          element?.classList.remove('about-block__accent--animate')
+          element && (element.textContent = str.slice(0, index))
           index++
         }
-      }, 200)
+      }, TYPING_SPEED)
     }
 
-    const backspace = str => {
+    const backspace = (str: string) => {
       interval = setInterval(() => {
         if (index < 0) {
           clearInterval(interval)
-          textIndex = textIndex === (greetings.length - 1) ? 0 : ++textIndex
-          index = 0
-          console.log(textIndex);
-          type(greetings[textIndex])
+          element?.classList.add('about-block__accent--animate')
+
+          timeout = setTimeout(() => {
+            index = 0
+            textIndex = textIndex === (greetings.length - 1) ? 0 : ++textIndex
+            type(greetings[textIndex])
+          }, TYPING_SPEED)
         } else {
-          element.textContent = str.slice(0, index)
+          clearTimeout(timeout)
+          element?.classList.remove('about-block__accent--animate')
+          element && (element.textContent = str.slice(0, index))
           index--
         }
-      }, 200)
+      }, TYPING_SPEED)
     }
 
     type(greetings[textIndex])
@@ -96,3 +89,90 @@
 
   typing()
 </script>
+
+<style lang="scss">
+  .about-block {
+    padding-bottom: 60px;
+
+    @media (min-width: 1024px) {
+      display: grid;
+      grid-column-gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      padding-bottom: 120px;
+    }
+
+    @media (min-width: 1280px) {
+      grid-column-gap: 48px;
+    }
+  }
+  .about-block__accent {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    font-family: 'Neue Machina';
+    font-size: clamp(42px, 10vw, 96px);
+    font-weight: 800;
+
+    @media (min-width: 1024px) {
+      grid-column: 1/-1;
+      margin-top: 48px;
+    }
+
+    &::after {
+      content: '|';
+      animation: none;
+    }
+
+    &--animate::after {
+      animation: blink 1s infinite;
+    }
+  }
+
+  .about-block__title {
+    font-family: 'Neue Machina';
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-size: clamp(32px, 10vw, 48px);
+    line-height: 1;
+
+
+    @media (min-width: 1024px) {
+      grid-column: 2/3;
+    }
+  }
+
+  .about-block__picture {
+    display: block;
+    margin-bottom: 24px;
+
+    @media (min-width: 1024px) {
+      grid-row: 2/4;
+      grid-column: 1/2;
+      padding-top: 64px;
+    }
+
+    @media (min-width: 1280px) {
+      margin-left: auto;
+    }
+
+    img {
+      display: block;
+    }
+  }
+
+  .about-block__description {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    &:not(:last-of-type) {
+      margin-bottom: 16px;
+    }
+  }
+
+  @keyframes blink {
+    0%, 100% {opacity: 1;}
+    50% {opacity: 0;}
+  }
+</style>

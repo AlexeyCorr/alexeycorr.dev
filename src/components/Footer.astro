@@ -2,13 +2,41 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="footer">
-	<p>&copy; {currentYear} @alexeycorr</p>
+<footer class="footer container">
+	<div class="footer__block">
+		<span class="footer__description">
+			По любым вопросам пишите на почту
+		</span>
+
+		<a class="footer__mail" href="mailto:alexeycorr@gmail.com">
+			alexeycorr@gmail.com
+		</a>
+	</div>
 </footer>
 
 <style>
 	.footer {
-		padding-top: 20px;
-		padding-bottom: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding-top: 100px;
+		padding-bottom: 100px;
+
+		@media (min-width: 1024px) {
+			padding-top: 200px;
+			padding-bottom: 200px;
+		}
+	}
+
+	.footer__description {
+		display: block;
+		margin-bottom: 2px;
+		font-size: 12px;
+	}
+
+	.footer__mail {
+    font-family: 'Neue Machina';
+    font-weight: 800;
+		font-size: clamp(20px, 4vw, 48px);
 	}
 </style>
