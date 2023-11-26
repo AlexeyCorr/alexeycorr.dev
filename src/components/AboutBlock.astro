@@ -19,8 +19,8 @@ const { data } = await getEntry('about', 'about');
     <img
       src="../assets/img/about/hi@1x.jpg"
       srcset="../assets/img/about/hi@2x.jpg 2x"
-      width="535"
-      height="570"
+      width="536"
+      height="536"
       loading="eager"
       decoding="sync"
       alt="Алексей в костюме зайца"
@@ -29,7 +29,7 @@ const { data } = await getEntry('about', 'about');
 
   <div class="about-block__content">
     {data.descriptions.map((description: string) => (
-      <p class="about-block__description">{description}</p>
+      <p class="about-block__description" set:html={description} />
     ))}
   </div>
 </section>
@@ -91,32 +91,37 @@ const { data } = await getEntry('about', 'about');
 </script>
 
 <style lang="scss">
-  .about-block {
-    padding-bottom: 60px;
+  @use '@/styles/variables' as *;
 
-    @media (min-width: 1024px) {
+  .about-block {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    @media (min-width: $lg) {
       display: grid;
-      grid-column-gap: 20px;
-      grid-template-columns: repeat(2, 1fr);
-      padding-bottom: 120px;
+      grid-column-gap: 32px;
+      grid-template-columns: 0.9fr 1fr;
+      grid-template-rows: auto auto 1fr;
+      padding-top: 48px;
+      padding-bottom: 60px;
     }
 
-    @media (min-width: 1280px) {
-      grid-column-gap: 48px;
+    @media (min-width: $xl) {
+      grid-column-gap: 70px;
     }
   }
+
   .about-block__accent {
     display: block;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     color: var(--accent-color);
     font-family: 'Neue Machina';
-    font-size: clamp(42px, 10vw, 96px);
+    font-size: clamp(48px, 10vw, 120px);
     font-weight: 800;
 
-    @media (min-width: 1024px) {
+    @media (min-width: $lg) {
       grid-column: 1/-1;
-      margin-top: 48px;
+      margin-bottom: 0;
     }
 
     &::after {
@@ -134,40 +139,62 @@ const { data } = await getEntry('about', 'about');
     font-weight: 800;
     margin-top: 0;
     margin-bottom: 24px;
-    font-size: clamp(32px, 10vw, 48px);
+    font-size: clamp(32px, 4vw, 48px);
     line-height: 1;
 
 
-    @media (min-width: 1024px) {
+    @media (min-width: $lg) {
       grid-column: 2/3;
+      margin-bottom: 100px;
+    }
+
+    @media (min-width: $xl) {
+      margin-top: -30px;
+      margin-bottom: 150px;
     }
   }
 
   .about-block__picture {
     display: block;
-    margin-bottom: 24px;
 
-    @media (min-width: 1024px) {
-      grid-row: 2/4;
-      grid-column: 1/2;
-      padding-top: 64px;
+    @media (max-width: $mdMax) {
+      margin-bottom: 24px;
     }
 
-    @media (min-width: 1280px) {
+    @media (min-width: $lg) {
+      grid-row: 2/4;
+      grid-column: 1/2;
+      padding-top: 92px;
+    }
+
+    @media (min-width: $xl) {
       margin-left: auto;
     }
 
     img {
       display: block;
+
+      @media (min-width: $lg) {
+        width: 536px;
+        height: 536px;
+        object-fit: cover;
+      }
     }
   }
 
   .about-block__description {
     margin-top: 0;
     margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 500;
+    text-indent: 30px;
+
+    @media (min-width: $lg) {
+      font-size: 18px;
+    }
 
     &:not(:last-of-type) {
-      margin-bottom: 16px;
+      margin-bottom: 24px;
     }
   }
 

@@ -1,13 +1,9 @@
-:root {
-	--bg-main-color: oklch(90.88% 0.008 98.89);
-	--text-main-color: oklch(22.58% 0.066 258.05);
-	--text-accent-color: oklch(90.88% 0.008 98.89);
-	--accent-color: oklch(56.08% 0.178 33.83);
-}
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+$xxl: 1600px;
 
-:root.theme-dark {
-	--bg-main-color: oklch(15% 0 0);
-	--text-main-color: oklch(91% 0 0);
-	--text-accent-color: oklch(90.88% 0.008 98.89);
-	--accent-color: oklch(76% 0.143 81);
-}
+$smMax: 767.9px;
+$mdMax: 1023.9px;
+$lgMax: 1279.9px;
+$xlMax: 1599.9px;

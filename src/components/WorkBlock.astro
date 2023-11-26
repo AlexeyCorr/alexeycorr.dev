@@ -1,0 +1,39 @@
+---
+import { getEntry } from 'astro:content';
+
+const { data } = await getEntry('work', 'work');
+---
+
+<section class="work-block container">
+    <h2 class="work-block__title">
+      <a href={data.link}>
+        {data.title}
+      </a>
+    </h2>
+</section>
+
+<style lang="scss">
+  @use '@/styles/variables' as *;
+
+  .work-block {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    @media (min-width: $lg) {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+  }
+
+  .work-block__title {
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-size: 18px;
+    font-weight: 500;
+    opacity: .5;
+
+    @media (min-width: $lg) {
+      margin-bottom: 32px;
+    }
+  }
+</style>
