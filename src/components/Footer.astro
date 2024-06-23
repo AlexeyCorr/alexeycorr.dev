@@ -1,14 +1,13 @@
 ---
 import { getEntry } from 'astro:content';
 import { getLangFromUrl } from '@/i18n/utils';
-import { languages, defaultLang } from '@/i18n/ui';
 
 const lang = getLangFromUrl(Astro.url);
 
 const { data } = await getEntry('footer', `${lang}/footer`);
 ---
 
-<footer class="footer container">
+<footer class="footer container" id="contacts">
 	<div class="footer__block">
 		<span class="footer__description">
 			{ data.description }
@@ -18,19 +17,6 @@ const { data } = await getEntry('footer', `${lang}/footer`);
 			alexeycorr@gmail.com
 		</a>
 	</div>
-
-	<ul class="footer__languages">
-		{Object.keys(languages).map((item) => (
-			<li>
-				<a
-					class={`footer__language ${lang === item ? 'footer__language--active' : ''}`}
-					href={item === defaultLang ? '/' : `/${item}`}
-				>
-					{languages[item]}
-				</a>
-			</li>
-		))}
-	</ul>
 </footer>
 
 <style lang="scss">
@@ -66,21 +52,6 @@ const { data } = await getEntry('footer', `${lang}/footer`);
 
 		&:hover {
 			color: var(--accent-color);
-		}
-	}
-
-	.footer__languages {
-		@include ulres;
-
-		display: grid;
-		gap: 10px;
-	}
-
-	.footer__language {
-		&--active {
-			color: var(--accent-color);
-			cursor: default;
-			pointer-events: none;
 		}
 	}
 </style>

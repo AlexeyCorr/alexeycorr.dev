@@ -1,0 +1,104 @@
+---
+import { defaultLang, languages } from '@/i18n/ui'
+import { getLangFromUrl } from '@/i18n/utils';
+
+interface Props {
+  data: Array<object>
+}
+
+const { data } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+---
+
+<div class="menu">
+  <ul class="menu__list">
+    {data.map((item: any) => (
+      <li class="menu__item">
+        <a class="menu__link" href={item.link}>
+          {item.title}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <ul class="menu__languages">
+    {Object.keys(languages).map((item) => (
+      <li>
+        <a
+          class={`menu__language ${lang === item ? 'menu__language--active' : ''}`}
+          href={item === defaultLang ? '/' : `/${item}`}
+        >
+          {languages[item]}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style lang="scss">
+  @use '@/styles/variables' as *;
+  @use '@/styles/mixins' as *;
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+
+    @media (min-width: $lg) {
+      flex-direction: row;
+    }
+  }
+
+  .menu__list {
+    @include ulres;
+
+    display: flex;
+    align-items: center;
+    margin: auto;
+    gap: 20px;
+
+
+    @media (max-width: $mdMax) {
+      flex-direction: column;
+    }
+  }
+
+  .menu__link {
+    font-family: 'Neue Machina';
+    font-weight: 400;
+    font-size: 20px;
+
+    @media (min-width: $lg) {
+      font-size: 12px;
+    }
+  }
+
+  .menu__languages {
+    @include ulres;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    @media (min-width: $lg) {
+      flex-direction: row;
+    }
+  }
+
+  .menu__language {
+    font-family: 'Neue Machina';
+    font-weight: 400;
+    font-size: 18px;
+
+    @media (min-width: $lg) {
+      font-size: 12px;
+    }
+
+    &--active {
+      color: var(--accent-color);
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+</style>

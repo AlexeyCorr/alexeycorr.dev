@@ -6,7 +6,7 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<section class="about-block container">
+<section class="about-block container" id="about">
   <strong class="about-block__accent"></strong>
 
   <h1 class="about-block__title">
@@ -160,7 +160,8 @@ const { data } = Astro.props;
     display: block;
 
     @media (max-width: $mdMax) {
-      margin-bottom: 24px;
+      max-width: 546px;
+      margin: 0 auto 24px;
     }
 
     @media (min-width: $lg) {
@@ -187,13 +188,7 @@ const { data } = Astro.props;
   .about-block__description {
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 500;
     text-indent: 30px;
-
-    @media (min-width: $lg) {
-      font-size: 18px;
-    }
 
     &:not(:last-of-type) {
       margin-bottom: 24px;

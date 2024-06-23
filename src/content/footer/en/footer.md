@@ -1,3 +1,3 @@
 ---
-  description: 'If you have any questions, please contact me by email'
+description: 'If you have any questions, please contact me by email'
 ---

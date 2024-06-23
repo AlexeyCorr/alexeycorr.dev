@@ -3,7 +3,6 @@ import { getEntry } from 'astro:content';
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import AboutBlock from '@/components/AboutBlock.astro';
-import WorkBlock from '@/components/WorkBlock.astro';
 import PresentationBlock from '@/components/PresentationBlock.astro';
 
 const getData = async (name) => {
@@ -12,12 +11,10 @@ const getData = async (name) => {
 }
 
 const about = await getData('about')
-const work = await getData('work')
 const presentation = await getData('presentation')
 ---
 
 <BaseLayout>
 	<AboutBlock data={about} />
-	<WorkBlock data={work} />
 	<PresentationBlock data={presentation} />
 </BaseLayout>

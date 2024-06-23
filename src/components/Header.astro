@@ -9,14 +9,13 @@ const { data } = await getEntry('menu', `${lang}/menu`);
 ---
 
 <header class="header container">
-  <a class="header__logo" href="/">
-    <img
-      width="20"
-      height="20"
-      src="../assets/img/logo.svg"
-      alt="Logo"
-    >
-  </a>
+  <img
+    class="header__logo"
+    width="20"
+    height="20"
+    src="../assets/img/logo.svg"
+    alt="Logo"
+  >
 
   <Navigation
     menu={data.menu}
