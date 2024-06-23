@@ -1,13 +1,17 @@
 ---
+import { getLangFromUrl } from '@/i18n/utils';
+
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
 }
 
+
 const { title, description } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
 ---
 
-<html lang="ru">
+<html lang={lang}>
 	<head>
 		<title>{title}</title>
 
@@ -67,5 +71,3 @@ const { title, description } = Astro.props;
 		color: #ffaa00;
 	}
 </style>
-
-

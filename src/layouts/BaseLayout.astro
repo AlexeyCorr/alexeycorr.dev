@@ -1,7 +1,11 @@
 ---
+import { getLangFromUrl } from '@/i18n/utils';
+
 import Header from '@/components/Header.astro';
 import MainHead from '@/components/MainHead.astro';
 import Footer from '@/components/Footer.astro';
+
+const lang = getLangFromUrl(Astro.url);
 
 interface Props {
 	title?: string | undefined;
@@ -11,7 +15,7 @@ interface Props {
 const { title, description } = Astro.props;
 ---
 
-<html lang="ru">
+<html lang={lang}>
 	<head>
 		<MainHead title={title} description={description} />
 	</head>

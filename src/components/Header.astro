@@ -1,8 +1,11 @@
 ---
 import { getEntry } from 'astro:content';
-import Navigation from '@/components/Navigation.astro'
+import { getLangFromUrl } from '@/i18n/utils';
+import Navigation from '@/components/Navigation.astro';
 
-const { data } = await getEntry('menu', 'menu');
+const lang = getLangFromUrl(Astro.url);
+
+const { data } = await getEntry('menu', `${lang}/menu`);
 ---
 
 <header class="header container">
@@ -11,7 +14,7 @@ const { data } = await getEntry('menu', 'menu');
       width="20"
       height="20"
       src="../assets/img/logo.svg"
-      alt=""
+      alt="Logo"
     >
   </a>
 

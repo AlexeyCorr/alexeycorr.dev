@@ -1,7 +1,9 @@
 ---
-import { getEntry } from 'astro:content';
+interface Props {
+  data: object;
+}
 
-const { data } = await getEntry('about', 'about');
+const { data } = Astro.props;
 ---
 
 <section class="about-block container">
@@ -38,7 +40,7 @@ const { data } = await getEntry('about', 'about');
   const TYPING_SPEED = 250
   const TYPING_DELAY = 5000
   const element = document.querySelector('.about-block__accent')
-  const greetings = ['안녕', 'こんにちは', 'Hello', 'Привет', 'Hola', '你好', 'Sain uu', 'Xin chào', 'გამარჯობა', 'Привит', 'Shalom', 'Aloha', 'Salom']
+  const greetings = ['안녕', 'こんにちは', 'Hello', 'Привет', 'Hola', '你好', 'Sain uu', 'สวัสดี', 'Xin chào', 'გამარჯობა', 'Привит', 'Shalom', 'Aloha', 'Salom']
 
   const typing = () => {
     let textIndex = 0

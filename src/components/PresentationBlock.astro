@@ -1,7 +1,9 @@
 ---
-import { getEntry } from 'astro:content';
+interface Props {
+  data: object;
+}
 
-const { data } = await getEntry('presentation', 'presentation');
+const { data } = Astro.props;
 ---
 
 <section class="presentation-block">
@@ -53,7 +55,6 @@ const { data } = await getEntry('presentation', 'presentation');
     margin-bottom: 24px;
     font-size: 18px;
     font-weight: 500;
-    opacity: .5;
 
     @media (min-width: $lg) {
       margin-bottom: 32px;

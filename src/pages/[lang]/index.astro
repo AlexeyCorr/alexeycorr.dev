@@ -1,23 +1,35 @@
 ---
 import { getEntry } from 'astro:content';
+import { getLangFromUrl } from '@/i18n/utils'
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import AboutBlock from '@/components/AboutBlock.astro';
 import WorkBlock from '@/components/WorkBlock.astro';
 import PresentationBlock from '@/components/PresentationBlock.astro';
 
+export function getStaticPaths () {
+	return [
+		{ params: { lang: 'en' }},
+		{ params: { lang: 'ru' }}
+	];
+}
+
+const lang = getLangFromUrl(Astro.url);
+
 const getData = async (name) => {
-	const { data } = await getEntry(name, `ru/${name}`);
+	const { data } = await getEntry(name, `${lang}/${name}`);
 	return data;
 }
 
 const about = await getData('about')
 const work = await getData('work')
 const presentation = await getData('presentation')
+
+const show = false
 ---
 
 <BaseLayout>
 	<AboutBlock data={about} />
-	<WorkBlock data={work} />
+	{show && <WorkBlock data={work} />}
 	<PresentationBlock data={presentation} />
 </BaseLayout>
