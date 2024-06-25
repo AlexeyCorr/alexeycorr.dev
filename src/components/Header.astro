@@ -10,7 +10,7 @@ const { data } = await getEntry('menu', `${lang}/menu`);
 
 <header class="header container">
   <img
-    class="header__logo"
+    class="header__logo invert"
     width="20"
     height="20"
     src="../assets/img/logo.svg"
@@ -30,10 +30,13 @@ const { data } = await getEntry('menu', `${lang}/menu`);
     display: grid;
     grid-gap: 30px;
     grid-template-columns: 20px 40px;
-    justify-content: space-between;
     align-items: center;
     padding-top: 20px;
     padding-bottom: 20px;
+
+    @media (max-width: $mdMax) {
+      justify-content: space-between;
+    }
 
     @media (min-width: $lg) {
       grid-template-columns: 20px auto;

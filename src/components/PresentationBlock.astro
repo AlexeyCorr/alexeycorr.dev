@@ -1,6 +1,10 @@
 ---
 interface Props {
-  data: object;
+  data: {
+    link: string,
+    title: string,
+    presentations: Array<object>
+  };
 }
 
 const { data } = Astro.props;
@@ -15,7 +19,7 @@ const { data } = Astro.props;
     </h2>
 
     <ul class="presentation-block__list">
-      {data.presentations.map((presentation: any) => (
+      {data.presentations.map((presentation: object) => (
         <li class="presentation-block__item">
 
             <h3 class="presentation-block__subtitle">
@@ -104,7 +108,7 @@ const { data } = Astro.props;
 
   .presentation-block__subtitle {
     margin: 0;
-    font-family: 'Neue Machina';
+    font-family: 'Neue Machina', sans-serif;
     font-weight: 800;
     font-size: clamp(32px, 4vw, 48px);
     line-height: 1;
@@ -112,10 +116,6 @@ const { data } = Astro.props;
 
   .presentation-block__link {
     transition: opacity .3s ease-in-out;
-
-    &:hover {
-      opacity: .5;
-    }
   }
 
   .presentation-block__sub {

@@ -30,9 +30,16 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  transition: color .2s ease-in-out;
 
   &:focus {
 	  outline: none;
+  }
+
+  &:hover {
+    @media (min-width: $lg) {
+      opacity: .7;
+    }
   }
 
   &:focus-visible {
@@ -45,6 +52,16 @@ a {
 img {
   max-width: 100%;
   height: auto;
+}
+
+[data-theme='dark'] .invert {
+  filter: invert(88%) hue-rotate(90deg);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme='auto'] .invert {
+    filter: invert(88%) hue-rotate(90deg);
+  }
 }
 
 .sr-only {

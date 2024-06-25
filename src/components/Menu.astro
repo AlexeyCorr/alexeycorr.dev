@@ -1,5 +1,6 @@
 ---
-import { defaultLang, languages } from '@/i18n/ui'
+import ThemeControl from '@/components/ThemeControl.astro';
+import { defaultLang, languages } from '@/i18n/ui';
 import { getLangFromUrl } from '@/i18n/utils';
 
 interface Props {
@@ -33,6 +34,8 @@ const lang = getLangFromUrl(Astro.url);
       </li>
     ))}
   </ul>
+
+  <ThemeControl />
 </div>
 
 <style lang="scss">
@@ -44,6 +47,11 @@ const lang = getLangFromUrl(Astro.url);
     flex-direction: column;
     align-items: center;
     gap: 40px;
+    font-family: 'Neue Machina', sans-serif;
+
+    @media (max-width: $mdMax) {
+      height: 100%;
+    }
 
     @media (min-width: $lg) {
       flex-direction: row;
@@ -55,18 +63,19 @@ const lang = getLangFromUrl(Astro.url);
 
     display: flex;
     align-items: center;
-    margin: auto;
     gap: 20px;
-
 
     @media (max-width: $mdMax) {
       flex-direction: column;
+      margin-top: auto;
+    }
+
+    @media (min-width: $lg) {
+      margin-right: auto;
     }
   }
 
   .menu__link {
-    font-family: 'Neue Machina';
-    font-weight: 400;
     font-size: 20px;
 
     @media (min-width: $lg) {
@@ -81,14 +90,16 @@ const lang = getLangFromUrl(Astro.url);
     flex-direction: column;
     gap: 10px;
 
+    @media (max-width: $mdMax) {
+      margin-top: auto;
+    }
+
     @media (min-width: $lg) {
       flex-direction: row;
     }
   }
 
   .menu__language {
-    font-family: 'Neue Machina';
-    font-weight: 400;
     font-size: 18px;
 
     @media (min-width: $lg) {

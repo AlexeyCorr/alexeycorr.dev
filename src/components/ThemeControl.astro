@@ -1,0 +1,135 @@
+---
+const themes = [
+  {
+    name: 'light',
+    pressed: false
+  },
+  {
+    name: 'auto',
+    pressed: true
+  },
+  {
+    name: 'dark',
+    pressed: false
+  }
+]
+---
+
+<div class="theme-control">
+  {themes.map((theme) => (
+    <button
+      class="theme-control__button"
+      data-value={theme.name}
+      aria-pressed={theme.pressed}
+      type="button"
+    >
+      { theme.name }
+    </button>
+  ))}
+</div>
+
+<script>
+  const switchers = document.querySelectorAll('.theme-control');
+
+  switchers.forEach(switcher => {
+    const controls = switcher.querySelectorAll('.theme-control__button');
+
+    const setActiveControl = (theme) => {
+      controls.forEach((item: HTMLElement) => {
+        const isCurrentTheme = item.dataset.value === theme;
+        item.ariaPressed = isCurrentTheme.toString();
+      })
+    }
+
+    const setTheme = (theme) => {
+      if (!theme) {
+        return;
+      }
+
+      document.body.dataset.theme = theme;
+      localStorage.setItem('currentTheme', theme);
+      setActiveControl(theme);
+    }
+
+    const theme = (() => {
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('currentTheme')) {
+        return localStorage.getItem('currentTheme');
+      }
+
+      return 'auto';
+    })();
+
+    setTheme(theme);
+
+    const clickControlHandler = (evt) => {
+      const control: HTMLElement | null = (evt.target as HTMLElement)?.closest('.theme-control__button');
+
+      if (!control) {
+        return;
+      }
+
+      setTheme(control.dataset.value);
+    };
+
+    switcher.addEventListener('click', clickControlHandler);
+  });
+</script>
+
+<style lang="scss">
+  @use '@/styles/variables' as *;
+  @use '@/styles/mixins' as *;
+
+  .theme-control {
+    position: relative;
+    border: 2px solid var(--accent-color);
+    border-radius: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 2px;
+    display: inline-grid;
+
+    &::after {
+      position: absolute;
+      inset: 2px;
+      z-index: -1;
+      width: calc(33% - .7px);
+      margin-inline: auto;
+      border-radius: 20px;
+      padding: 2px 10px;
+      background-color: var(--bg-main-color-invert);
+      transition: transform .2s ease-in-out;
+      pointer-events: none;
+      transform: translate(0);
+      content: '';
+    }
+
+    &:has(.theme-control__button[aria-pressed=true][data-value=light])::after {
+      transform: translate(-100%);
+    }
+
+    &:has(.theme-control__button[aria-pressed=true][data-value=dark])::after {
+      transform: translate(100%);
+    }
+  }
+
+  .theme-control__button {
+    @include inpres;
+
+    border-radius: 20px;
+    padding: 2px 10px;
+    transition: background-color .2s linear, color .2s linear;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover:not([aria-pressed=true]) {
+      @media (min-width: $lg) {
+        color: var(--text-accent-color);
+        background-color: var(--accent-color);
+      }
+    }
+
+    &[aria-pressed=true] {
+      color: var(--text-main-color-invert);
+      cursor: default;
+    }
+  }
+</style>

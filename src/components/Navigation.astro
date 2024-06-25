@@ -21,43 +21,52 @@ const { menu, toggleText } = Astro.props;
   </button>
 
   <dialog class="navigation__modal">
+    <button
+        class="navigation__toggle navigation__toggle--modal"
+        type="button"
+        aria-label={toggleText}
+        aria-expanded="true"
+        aria-controls="menu"
+    >
+      <span class="navigation__toggle-line"></span>
+    </button>
+
     <Menu data={menu} />
   </dialog>
 
   <div class="navigation__menu">
-    <Menu data={menu} />
+    <Menu data={menu} client:load />
   </div>
 </nav>
 
 <script>
-  const toggle: HTMLElement | null = document.querySelector('.navigation__toggle')
-  const modal: HTMLElement | null = document.querySelector('.navigation__modal')
-
-  const toggleView = () => {
-    modal.open ? modal.close() : modal.show();
-    toggle.ariaExpanded = modal.open
-  }
+  const navigation: HTMLElement | null = document.querySelector('.navigation');
+  const modal: HTMLElement | null = document.querySelector('.navigation__modal');
 
   const openMenu = () => {
-    toggleView()
-    modal?.addEventListener('click', menuClickHandler)
+    modal?.showModal();
+    modal?.addEventListener('click', menuClickHandler);
   }
 
   const closeMenu = () => {
-    toggleView()
-    modal?.removeEventListener('click', menuClickHandler)
+    modal?.close();
+    modal?.removeEventListener('click', menuClickHandler);
   }
 
   const menuClickHandler = (evt: MouseEvent) => {
-    const link = (evt.target as HTMLElement).closest('.menu__link')
+    const link = (evt.target as HTMLElement).closest('.menu__link');
 
     if (link) {
-      closeMenu()
+      closeMenu();
     }
   }
 
-  toggle?.addEventListener('click', () => {
-    modal.open ? closeMenu() : openMenu()
+  navigation?.addEventListener('click', (evt) => {
+    const toggle = (evt.target as HTMLElement).closest('.navigation__toggle');
+
+    if (toggle) {
+      modal.open ? closeMenu() : openMenu();
+    }
   })
 </script>
 
@@ -68,7 +77,6 @@ const { menu, toggleText } = Astro.props;
   .navigation__toggle {
     @include inpres;
 
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -78,11 +86,16 @@ const { menu, toggleText } = Astro.props;
     height: 40px;
     border: none;
     cursor: pointer;
-    z-index: 30;
     border-radius: 50%;
 
     @media (min-width: $lg) {
       display: none;
+    }
+
+    &--modal {
+      position: absolute;
+      right: 4px;
+      top: 12px;
     }
   }
 
@@ -92,7 +105,7 @@ const { menu, toggleText } = Astro.props;
     width: 100%;
     height: 4px;
     border-radius: 2px;
-    background-color: var(--bg-accent-color);
+    background-color: var(--bg-main-color-invert);
     transition: background-color .2s .3s;
 
     &::before,
@@ -102,7 +115,7 @@ const { menu, toggleText } = Astro.props;
       width: 100%;
       height: 4px;
       border-radius: 4px;
-      background-color: var(--bg-accent-color);
+      background-color: var(--bg-main-color-invert);
       transform-origin: center;
       transition: translate .3s .3s, rotate .3s;
       content: '';
