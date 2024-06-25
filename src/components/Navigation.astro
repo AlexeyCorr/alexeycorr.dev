@@ -1,5 +1,5 @@
 ---
-import Menu from '@/components/Menu.astro'
+import Menu from '@/components/Menu.astro';
 
 interface Props {
 	menu: Array<object>
@@ -35,7 +35,7 @@ const { menu, toggleText } = Astro.props;
   </dialog>
 
   <div class="navigation__menu">
-    <Menu data={menu} client:load />
+    <Menu data={menu} />
   </div>
 </nav>
 
