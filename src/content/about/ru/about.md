@@ -1,8 +1,23 @@
 ---
 title: 'Я Алексей Корякин фронтенд-разработчик'
+alt: 'Алексей в костюме зайца'
 descriptions: [
   'Работаю с&nbsp;HTML5, CSS3, JavaScript, так&nbsp;же с&nbsp;фреймворками Vue.js и&nbsp;React.js. Использую SASS в&nbsp;синтаксисе SCSS.',
   'С&nbsp;2019 года я&nbsp;часть команды разработки в&nbsp;Skillbox.ru. Отвечаю за&nbsp;разработку и&nbsp;оптимизацию конструктора посадочных страниц, главного сайта на&nbsp;nuxt.js и&nbsp;реализацию компонентов для дизайн системы.',
   'В&nbsp;свободное время, как наставник в&nbsp;html academy, помогаю студентам познакомиться с&nbsp;разработкой.'
+]
+links: [
+  {
+    name: 'GitHub',
+    link: 'https://github.com/AlexeyCorr/'
+  },
+  {
+    name: 'Telegram',
+    link: 'tg://resolve?domain=alexeycorr'
+  },
+  {
+    name: 'Instagram',
+    link: 'https://www.instagram.com/alexeycorr/'
+  }
 ]
 ---

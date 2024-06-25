@@ -1,6 +1,11 @@
 ---
 interface Props {
-  data: object;
+  data: {
+    title: string
+    alt: string
+    descriptions: Array<string>
+    links: Array<object>
+  };
 }
 
 const { data } = Astro.props;
@@ -25,7 +30,7 @@ const { data } = Astro.props;
       height="536"
       loading="eager"
       decoding="sync"
-      alt="Алексей в костюме зайца"
+      alt={data.alt}
     >
   </picture>
 
@@ -33,6 +38,21 @@ const { data } = Astro.props;
     {data.descriptions.map((description: string) => (
       <p class="about-block__description" set:html={description} />
     ))}
+
+    <ul class="about-block__list">
+      {data.links.map((item: object) => (
+        <li class="about-block__item">
+          <a
+            class="about-block__link"
+            href={item.link}
+            target="_blank"
+            rel="noopener"
+          >
+            {item.name}
+          </a>
+        </li>
+      ))}
+    </ul>
   </div>
 </section>
 
@@ -94,6 +114,7 @@ const { data } = Astro.props;
 
 <style lang="scss">
   @use '@/styles/variables' as *;
+  @use '@/styles/mixins' as *;
 
   .about-block {
     padding-top: 30px;
@@ -132,7 +153,7 @@ const { data } = Astro.props;
     }
 
     &--animate::after {
-      animation: blink 1s infinite;
+      animation: --blink 1s infinite;
     }
   }
 
@@ -185,6 +206,10 @@ const { data } = Astro.props;
     }
   }
 
+  .about-block__content {
+    max-width: 600px;
+  }
+
   .about-block__description {
     margin-top: 0;
     margin-bottom: 0;
@@ -195,7 +220,27 @@ const { data } = Astro.props;
     }
   }
 
-  @keyframes blink {
+  .about-block__list {
+    @include ulres;
+
+    display: flex;
+    gap: 5px;
+    margin-top: 24px;
+  }
+
+  .about-block__link {
+    font-family: 'Neue Machina', sans-serif;
+    font-size: 16px;
+    text-decoration: underline;
+
+    &:hover {
+      @media (min-width: $lg) {
+        text-decoration: none;
+      }
+    }
+  }
+
+  @keyframes --blink {
     0%, 100% {opacity: 1;}
     50% {opacity: 0;}
   }
