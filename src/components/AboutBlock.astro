@@ -207,7 +207,9 @@ const { data } = Astro.props;
   }
 
   .about-block__content {
-    max-width: 600px;
+    @media (min-width: $xl) {
+      max-width: 600px;
+    }
   }
 
   .about-block__description {
