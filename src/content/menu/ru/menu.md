@@ -3,7 +3,7 @@ title: 'Навигация'
 toggleText: 'Переключатель меню'
 menu: [
   {
-    title: 'Обо мне',
+    title: 'О себе',
     link: '#about'
   },
   {

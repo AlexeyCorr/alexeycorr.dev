@@ -2,9 +2,9 @@
 title: 'I`m Alexey Koryakin, frontend developer.'
 alt: 'Alexey in a rabbit costume'
 descriptions: [
-  'I work with HTML5, CSS3, JavaScript, as well as with the Vue.js and React.js frameworks. I use SASS in SCSS syntax.',
-  'Since 2019, I`ve been part of the development team at Skillbox.ru. I am responsible for the development and optimization of the landing page builder, the main site on nuxt.js and the implementation of components for the design system.',
-  'In my free time, as a mentor at the HTML academy, I help students get acquainted with development.'
+  'I work with HTML5, CSS3, JavaScript, as well as frameworks like Vue.js and React.js. I also use the SASS preprocessor in SCSS syntax.',
+  'Since 2019, I have been part of the Skillbox.ru development team, where I am responsible for developing and optimizing the landing page builder, the main website on Nuxt.js, and implementing components for the design system.',
+  'In my free time, I work as a mentor at HTML Academy, helping students get acquainted with web development.'
 ]
 links: [
   {
