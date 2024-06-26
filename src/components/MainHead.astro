@@ -2,26 +2,43 @@
 import '@/styles/styles.scss';
 
 interface Props {
-	title?: string | undefined;
-	description?: string | undefined;
+  title?: string | undefined;
+  description?: string | undefined;
 }
 
-const {
-	title = 'AlexeyCorr',
-	description = 'The personal site of AlexeyCorr',
-} = Astro.props;
+const URL = {
+  SITE: 'https://alexeycorr.dev/',
+  ME: 'https://mastodon.social/@alexeycorr',
+  TWITTER: '@alexeycorr'
+}
+
+const { title, description } = Astro.props;
 ---
 
-<meta charset="UTF-8" />
-<meta name="description" property="og:description" content={description} />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="generator" content={Astro.generator} />
-
-<meta name="color-scheme" content="light">
-<meta name="theme-color" content="#fff">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content={Astro.generator}>
 
 <link rel="preload" href="../assets/fonts/NeueMachina-Ultrabold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="../assets/icons/favicon.ico" sizes="any">
+<link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+
+<link rel="canonical" href={URL.SITE}>
+<link rel="me" href={URL.ME}>
+
+<meta name="description" content={description}>
+<meta name="generator" content={Astro.generator}>
+
+<meta name="theme-color" content="#c73f21">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={URL.SITE}>
+<meta property="og:image" content="../assets/img/OG.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@alexeycorr">
 
 <title>{title}</title>
-
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />

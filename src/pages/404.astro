@@ -8,7 +8,7 @@ const lang = getLangFromUrl(Astro.url);
 const { data } = await getEntry('common', `${lang}/common`);
 ---
 
-<BaseLayout title="Not Found" description="404 Error — this page was not found">
+<BaseLayout title={data.title} description={data.description}>
 	<section class="not-found">
 		<h1>{ data[404] }</h1>
 

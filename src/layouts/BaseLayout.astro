@@ -1,23 +1,25 @@
 ---
+import { getEntry } from 'astro:content';
 import { getLangFromUrl } from '@/i18n/utils';
 
 import Header from '@/components/Header.astro';
 import MainHead from '@/components/MainHead.astro';
 import Footer from '@/components/Footer.astro';
 
-const lang = getLangFromUrl(Astro.url);
-
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
 }
 
+const lang = getLangFromUrl(Astro.url);
+
 const { title, description } = Astro.props;
+const { data } = await getEntry('description', `${lang}/description`);
 ---
 
 <html lang={lang}>
 	<head>
-		<MainHead title={title} description={description} />
+		<MainHead title={title ?? data.title} description={description ?? data.description} />
 	</head>
 
 	<body class="page">
