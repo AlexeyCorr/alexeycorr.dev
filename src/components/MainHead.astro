@@ -1,5 +1,8 @@
 ---
 import '@/styles/styles.scss';
+import fontNeueMachina from '@assets/fonts/NeueMachina-Ultrabold.woff2'
+import favicon from '@assets/icons/favicon.ico'
+import faviconSvg from '@assets/icons/favicon.ico'
 
 interface Props {
   title?: string | undefined;
@@ -19,9 +22,9 @@ const { title, description } = Astro.props;
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content={Astro.generator}>
 
-<link rel="preload" href="../assets/fonts/NeueMachina-Ultrabold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="../assets/icons/favicon.ico" sizes="any">
-<link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preload" href={fontNeueMachina} as="font" type="font/woff2" crossorigin>
+<link rel="icon" href={favicon} sizes="any">
+<link rel="icon" href={faviconSvg} type="image/svg+xml">
 
 <link rel="canonical" href={URL.SITE}>
 <link rel="me" href={URL.ME}>
@@ -35,7 +38,7 @@ const { title, description } = Astro.props;
 <meta property="og:title" content={title}>
 <meta property="og:description" content={description}>
 <meta property="og:url" content={URL.SITE}>
-<meta property="og:image" content="../assets/img/OG.png">
+<meta property="og:image" content={`${URL.SITE}assets/img/OG.png`}>
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">

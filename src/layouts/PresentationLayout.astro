@@ -1,4 +1,7 @@
 ---
+import '@assets/shower/themes/ribbon/styles/styles.css';
+import favicon from '@assets/icons/favicon.ico';
+import faviconSvg from '@assets/icons/favicon.ico';
 import { getLangFromUrl } from '@/i18n/utils';
 
 interface Props {
@@ -24,9 +27,8 @@ const lang = getLangFromUrl(Astro.url);
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 		<meta name="generator" content={Astro.generator}>
 
-		<link rel="stylesheet" href="../../assets/shower/themes/ribbon/styles/styles.css">
-		<link rel="icon" href="../../assets/icons/favicon.ico" sizes="any">
-		<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+		<link rel="icon" href={favicon} sizes="any">
+		<link rel="icon" href={faviconSvg} type="image/svg+xml">
 
 		<link rel="canonical" href={URL.SITE}>
 		<link rel="me" href={URL.ME}>
@@ -41,7 +43,7 @@ const lang = getLangFromUrl(Astro.url);
 		<meta property="og:title" content={title}>
 		<meta property="og:description" content={description}>
 		<meta property="og:url" content={URL.SITE}>
-		<meta property="og:image" content="../../assets/img/OG.png">
+		<meta property="og:image" content={`${URL.SITE}assets/img/OG.png`}>
 		<meta property="og:image:width" content="1200">
 		<meta property="og:image:height" content="630">
 		<meta name="twitter:card" content="summary_large_image">
