@@ -1,0 +1,11 @@
+{
+  "name": "Aleksey Koriakin",
+  "description": "Front-end developer in love with the film photography, coffee and anime",
+  "lang": "en",
+  "dir": "ltr",
+  "id": "/",
+  "start_url": "/",
+  "theme_color": "#c73f21",
+  "display": "browser",
+  "orientation": "natural"
+}

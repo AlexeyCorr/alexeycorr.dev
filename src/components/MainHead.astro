@@ -18,30 +18,32 @@ const URL = {
 const { title, description } = Astro.props;
 ---
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="generator" content={Astro.generator}>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content={Astro.generator}>
 
-<link rel="preload" href={fontNeueMachina} as="font" type="font/woff2" crossorigin>
-<link rel="icon" href={favicon} sizes="any">
-<link rel="icon" href={faviconSvg} type="image/svg+xml">
+  <link rel="preload" href={fontNeueMachina} as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href={favicon} sizes="any">
+  <link rel="icon" href={faviconSvg} type="image/svg+xml">
 
-<link rel="canonical" href={URL.SITE}>
-<link rel="me" href={URL.ME}>
+  <link rel="canonical" href={URL.SITE}>
+  <link rel="me" href={URL.ME}>
 
-<meta name="description" content={description}>
-<meta name="generator" content={Astro.generator}>
+  <meta name="description" content={description}>
+  <meta name="generator" content={Astro.generator}>
 
-<meta name="theme-color" content="#c73f21">
+  <meta name="theme-color" content="#c73f21">
 
-<meta property="og:type" content="website">
-<meta property="og:title" content={title}>
-<meta property="og:description" content={description}>
-<meta property="og:url" content={URL.SITE}>
-<meta property="og:image" content={`${URL.SITE}assets/img/OG.png`}>
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@alexeycorr">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={URL.SITE}>
+  <meta property="og:image" content={`${URL.SITE}assets/img/OG.png`}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@alexeycorr">
 
-<title>{title}</title>
+  <title>{title}</title>
+</head>

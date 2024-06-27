@@ -18,9 +18,10 @@ const { data } = await getEntry('description', `${lang}/description`);
 ---
 
 <html lang={lang}>
-	<head>
-		<MainHead title={title ?? data.title} description={description ?? data.description} />
-	</head>
+	<MainHead
+		title={title ?? data.title}
+		description={description ?? data.description}
+	/>
 
 	<body class="page">
 		<Header />
