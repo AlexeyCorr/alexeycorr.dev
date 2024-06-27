@@ -3,10 +3,11 @@ import Menu from '@/components/Menu.astro';
 
 interface Props {
 	menu: Array<object>
+  themes: Array<object>
   toggleText: string
 }
 
-const { menu, toggleText } = Astro.props;
+const { menu, themes, toggleText } = Astro.props;
 ---
 
 <nav class="navigation">
@@ -22,20 +23,26 @@ const { menu, toggleText } = Astro.props;
 
   <dialog class="navigation__modal">
     <button
-        class="navigation__toggle navigation__toggle--modal"
-        type="button"
-        aria-label={toggleText}
-        aria-expanded="true"
-        aria-controls="menu"
+      class="navigation__toggle navigation__toggle--modal"
+      type="button"
+      aria-label={toggleText}
+      aria-expanded="true"
+      aria-controls="menu"
     >
       <span class="navigation__toggle-line"></span>
     </button>
 
-    <Menu data={menu} />
+    <Menu
+      data={menu}
+      themes={themes}
+    />
   </dialog>
 
   <div class="navigation__menu">
-    <Menu data={menu} />
+    <Menu
+      data={menu}
+      themes={themes}
+    />
   </div>
 </nav>
 

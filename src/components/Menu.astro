@@ -5,17 +5,28 @@ import { getLangFromUrl } from '@/i18n/utils';
 
 interface Props {
   data: Array<object>
+  themes: Array<object>
 }
 
-const { data } = Astro.props;
+const { data, themes } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
+
+const getUrl = (from, to) => {
+  let pathName = Astro.url.pathname
+
+  if (pathName.match(from) === null) {
+    pathName = `/${from}${pathName}`
+  }
+
+  return pathName.replace(from, to);
+}
 ---
 
 <div class="menu">
   <ul class="menu__list">
     {data.map((item: any) => (
       <li class="menu__item">
-        <a class="menu__link" href={item.link}>
+        <a class="menu__link" href={lang === defaultLang ? item.link : `/${lang}${item.link}`}>
           {item.title}
         </a>
       </li>
@@ -27,7 +38,7 @@ const lang = getLangFromUrl(Astro.url);
       <li>
         <a
           class={`menu__language ${lang === item ? 'menu__language--active' : ''}`}
-          href={item === defaultLang ? '/' : `/${item}`}
+          href={item === defaultLang ? getUrl('en', 'ru') : getUrl('ru', 'en')}
         >
           {languages[item]}
         </a>
@@ -35,7 +46,7 @@ const lang = getLangFromUrl(Astro.url);
     ))}
   </ul>
 
-  <ThemeControl />
+  <ThemeControl themes={themes} />
 </div>
 
 <style lang="scss">

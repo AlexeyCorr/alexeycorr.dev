@@ -47,4 +47,13 @@ const { data } = await getEntry('common', `${lang}/common`);
 		max-width: 100%;
 		height: auto;
 	}
+
+	.not-found__link {
+		text-decoration: underline;
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: none;
+		}
+	}
 </style>

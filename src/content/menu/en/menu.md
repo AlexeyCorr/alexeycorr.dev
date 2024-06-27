@@ -4,15 +4,25 @@ toggleText: 'Switch menu'
 menu: [
   {
     title: 'About me',
-    link: '#about'
+    link: '/#about'
   },
   {
     title: 'Presentation',
-    link: '#presentation'
+    link: '/#presentation'
   },
   {
     title: 'Contacts',
-    link: '#contacts'
+    link: '/#contacts'
+  }
+]
+themes: [
+  {
+    name: 'Light side',
+    value: 'light'
+  },
+  {
+    name: 'Dark side',
+    value: 'dark'
   }
 ]
 ---

@@ -1,26 +1,17 @@
 ---
-const themes = [
-  {
-    name: 'light',
-    pressed: false
-  },
-  {
-    name: 'auto',
-    pressed: true
-  },
-  {
-    name: 'dark',
-    pressed: false
-  }
-]
+interface Props {
+  themes: Array<object>
+}
+
+const { themes } = Astro.props;
 ---
 
 <div class="theme-control">
-  {themes.map((theme) => (
+  {themes.map((theme, index) => (
     <button
       class="theme-control__button"
-      data-value={theme.name}
-      aria-pressed={theme.pressed}
+      data-value={theme.value}
+      aria-pressed={index === 0}
       type="button"
     >
       { theme.name }
@@ -30,6 +21,7 @@ const themes = [
 
 <script>
   const switchers = document.querySelectorAll('.theme-control');
+  const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
   switchers.forEach(switcher => {
     const controls = switcher.querySelectorAll('.theme-control__button');
@@ -56,7 +48,7 @@ const themes = [
         return localStorage.getItem('currentTheme');
       }
 
-      return 'auto';
+      return darkModeMediaQuery.matches ? 'dark' : 'light'
     })();
 
     setTheme(theme);
@@ -71,6 +63,10 @@ const themes = [
       setTheme(control.dataset.value);
     };
 
+    darkModeMediaQuery.addEventListener('change', (evt) => {
+      const theme = evt.matches ? 'dark' : 'light';
+      setTheme(theme);
+    });
     switcher.addEventListener('click', clickControlHandler);
   });
 </script>
@@ -83,7 +79,7 @@ const themes = [
     position: relative;
     border: 2px solid var(--accent-color);
     border-radius: 20px;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     padding: 2px;
     display: inline-grid;
 
@@ -91,8 +87,7 @@ const themes = [
       position: absolute;
       inset: 2px;
       z-index: -1;
-      width: calc(33% - .7px);
-      margin-inline: auto;
+      width: calc(50% - 2px);
       border-radius: 20px;
       padding: 2px 10px;
       background-color: var(--bg-main-color-invert);
@@ -100,10 +95,6 @@ const themes = [
       pointer-events: none;
       transform: translate(0);
       content: '';
-    }
-
-    &:has(.theme-control__button[aria-pressed=true][data-value=light])::after {
-      transform: translate(-100%);
     }
 
     &:has(.theme-control__button[aria-pressed=true][data-value=dark])::after {

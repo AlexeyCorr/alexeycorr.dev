@@ -1,5 +1,5 @@
 ---
-title: 'Я Алексей Корякин фронтенд-разработчик'
+title: 'Я Алексей Корякин, фронтенд-разработчик'
 alt: 'Алексей в костюме зайца'
 descriptions: [
   'Работаю с&nbsp;HTML5, CSS3, JavaScript, а&nbsp;также с&nbsp;фреймворками Vue.js и&nbsp;React.js. Использую препроцессор SASS в&nbsp;синтаксисе SCSS.',
@@ -10,6 +10,10 @@ links: [
   {
     name: 'GitHub',
     link: 'https://github.com/AlexeyCorr/'
+  },
+  {
+    name: 'Linkedin',
+    link: 'https://www.linkedin.com/in/alexeycorr/'
   },
   {
     name: 'Telegram',

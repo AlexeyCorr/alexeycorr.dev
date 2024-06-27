@@ -12,6 +12,10 @@ links: [
     link: 'https://github.com/AlexeyCorr/'
   },
   {
+    name: 'Linkedin',
+    link: 'https://www.linkedin.com/in/alexeycorr/'
+  },
+  {
     name: 'Telegram',
     link: 'tg://resolve?domain=alexeycorr'
   },
