@@ -21,7 +21,7 @@ themes: [
     value: 'light'
   },
   {
-    name: 'Темная сторона',
+    name: 'Тёмная сторона',
     value: 'dark'
   }
 ]

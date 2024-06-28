@@ -1,5 +1,5 @@
 ---
-title: 'I`m Alexey Koriakin, frontend developer'
+title: 'I`m Alexey Koryakin, frontend developer'
 alt: 'Alexey in a rabbit costume'
 descriptions: [
   'I work with HTML5, CSS3, JavaScript, as well as frameworks like Vue.js and React.js. I also use the SASS preprocessor in SCSS syntax.',

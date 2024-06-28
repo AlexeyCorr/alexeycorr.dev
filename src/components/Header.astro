@@ -1,5 +1,4 @@
 ---
-import logo from '@assets/img/logo.svg';
 import { getEntry } from 'astro:content';
 import { getLangFromUrl } from '@/i18n/utils';
 import Navigation from '@/components/Navigation.astro';
@@ -14,7 +13,7 @@ const { data } = await getEntry('menu', `${lang}/menu`);
     class="header__logo invert"
     width="20"
     height="20"
-    src={logo.src}
+    src="/assets/img/logo.svg"
     alt="Logo"
   >
 

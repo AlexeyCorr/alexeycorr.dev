@@ -1,5 +1,4 @@
 ---
-import video from '@assets/img/404.mp4'
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getEntry } from 'astro:content';
 import { getLangFromUrl } from '@/i18n/utils';
@@ -15,7 +14,7 @@ const { data } = await getEntry('common', `${lang}/common`);
 
 		<video
 			class="not-found__video"
-			src={video}
+			src="/assets/img/404.mp4"
 			autoplay
 			loop
 			muted
